@@ -80,9 +80,15 @@ void Grafo::insertarVertice(Estacion *parada){
 		aux->siguiente = nuevo;
 	}
 }
-
+/*pre: lista con todos los campos de una boca de subte que lee de un archivo
+ * ej: campos boca subte 1-campos boca subte 2- etc
+ * post:
+ * para cada linea crea una estacion y la agrega a un vertice del grafo
+ * */
 void Grafo::cargarVertices(Lista<std::string>*bocas){
-
+	/*no verifica si la estacion ya existe en el grafo, por ej una boca de subte
+	 * siempre tiene su respectiva parte en otra calle con el mismo nombre pero en otro sentido de
+	 * la linea o simplemente ingreso desde otra calle. Todas quedan cargadas*/
 	bocas->iniciarCursor();
 
 	while(bocas->avanzarCursor()) {
@@ -91,8 +97,26 @@ void Grafo::cargarVertices(Lista<std::string>*bocas){
 		insertarVertice(nuevaEstacion);
 	}
 }
+/*llamar solo cuando se tienen todos los vertices en el grafo*/
 void Grafo::cargarAristas(){
+	Vertice* iterando=this->primero;
+	Vertice* posibleAdyacente=this->primero;
+	/*toma un vertice y recorre hasta el final buscando adyacencias por distancia*/
+	while(iterando!=NULL){
+		Coordenadas ubicacionIterada=iterando->parada->verUbicacion();
+		/*toma un vertice y verifica si esta cerca del anterior, si lo esta inserta
+		 * la arista correspondiente*/
+		while(posibleAdyacente!=NULL){
+			Coordenadas ubicacionadyacentePosible=posibleAdyacente->parada->verUbicacion();
+			ui distancia=ubicacionadyacentePosible.distanciaMetros(ubicacionIterada);
+			if (distancia<500){
+				this->insertarArista(iterando, posibleAdyacente, distancia);
+			}
+			posibleAdyacente=posibleAdyacente->siguiente;
 
+		}
+		iterando=iterando->siguiente;
+	}
 
 }
 /*sirve para imprimir el grafo graficamente como una lista de adyacencia*/

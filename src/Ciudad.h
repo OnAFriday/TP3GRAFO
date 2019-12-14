@@ -18,10 +18,7 @@
 class Ciudad {
 
 	private:
-		Lista<Estacion*>*estacionesTren;
-		Lista<Estacion*>*bocasSubte;
-		Lista<Estacion*>*estacionesColectivo;
-		Lista<Estacion*>paradasColectivoAux;
+
 		Grafo* subtes;
 		Grafo* paradasColectivo;
 		Grafo *estacionesFerrocarril;
@@ -39,23 +36,13 @@ class Ciudad {
 		Ciudad();
 
 
-		const Lista<Estacion*>*verEstacionesTren(){
-			return this->estacionesTren;
-		}
-		const Lista<Estacion*>* verBocasSubte(){
-			return this->bocasSubte;
-		}
 		void verRecorridoConCombinacion(Coordenadas , Coordenadas j){
 
 		};
 		void verRecorridoDirecto(Coordenadas , Coordenadas j){
 
 		}
-		const Lista<Estacion*>* verColectivos(){
-			return this->estacionesColectivo;
-		}
 
-		void cargarDatos (Lista<Estacion*> * medioDeTransporte, Lista<std::string> datos, std::string tipoDeTransporte);
 
 		~Ciudad();
 };

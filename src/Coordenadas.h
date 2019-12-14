@@ -61,6 +61,9 @@ class Coordenadas {
         	return this->latitud!=aComparar.verLatitud()&&this->longitud!=aComparar.verLongitud()
         			&&(aComparar.valida());
         }
+        bool operator ==(Coordenadas aComparar){
+        	return longitud==aComparar.verLongitud()&& latitud==aComparar.verLatitud();
+        }
         bool valida(){
         	return this->latitud!=0.0&&this->longitud!=0.0;
         }

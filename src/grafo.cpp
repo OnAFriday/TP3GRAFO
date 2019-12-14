@@ -26,7 +26,8 @@ int Grafo :: Tamanio(){
 
 
 
-/*Declarar en tda Estacion estacionAux==estacion*/
+/*devuelve el vertice considerando que 2 estaciones son iguales si tienen la misma
+ * ubicacion geografica*/
 Vertice *Grafo::getVertice(Estacion *parada){
 	Vertice *iterar=NULL;
 	bool encontrado =false;
@@ -67,7 +68,7 @@ void Grafo::insertarVertice(Estacion *parada){
 	nuevo->siguiente = NULL;
 	nuevo->adyacente = NULL;
 	nuevo->parada=parada;
-	if (this->estaVacio()){
+	if (estaVacio()){
 		primero = nuevo;
 	}
 	else{
@@ -89,7 +90,7 @@ void Grafo :: ListaAdyacencia(){
 
 	verticeAux = primero;
 	while (verticeAux != NULL){
-		cout<<verticeAux->nombre <<"-->";
+		cout<<verticeAux->parada->verNombre() <<"-->";
 		aristaAux = verticeAux->adyacente;
 		while(aristaAux != NULL) {
 			cout<<aristaAux->Adyacente->nombre <<"-->";

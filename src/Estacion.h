@@ -88,6 +88,9 @@ class Estacion {
 		std::string verNombre(){
 			return this->nombre;
 		}
+		bool operator ==(Estacion* aComparar){
+			return *ubicacion==aComparar->verUbicacion();
+		}
 
 		~Estacion(){
 			delete this->ubicacion;

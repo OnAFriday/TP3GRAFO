@@ -38,6 +38,7 @@ class Ciudad {
 
 		void verRedSubte();
 		void verRedTren();
+		void verRedTransporte();
 		void verRecorridoConCombinacion(Coordenadas , Coordenadas j){
 
 		};

@@ -38,11 +38,13 @@ class Grafo {
 	public:
 		Grafo();
 		bool estaVacio();
-		int Tamanio(); // numero de vertices del grafo
+		int Tamanio();
 
 		Vertice *getVertice(Estacion *parada);
 		void insertarVertice(Estacion *parada);
-
+		void cargarVertices(Lista<std::string>*estaciones);
+		void cargarAristas();
+		/*de aca abajo metodos no probados*/
 		void insertarArista (Vertice *origen, Vertice *destino, ui distancia);
 		void ListaAdyacencia();
 		void EliminarArista(Vertice *origen, Vertice *destino);

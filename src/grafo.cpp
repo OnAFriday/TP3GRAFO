@@ -81,8 +81,21 @@ void Grafo::insertarVertice(Estacion *parada){
 	}
 }
 
+void Grafo::cargarVertices(Lista<std::string>*bocas){
+
+	bocas->iniciarCursor();
+
+	while(bocas->avanzarCursor()) {
+		std::string infoEstacion = bocas->obtenerCursor();
+		Estacion* nuevaEstacion = new Estacion (infoEstacion);
+		insertarVertice(nuevaEstacion);
+	}
+}
+void Grafo::cargarAristas(){
 
 
+}
+/*sirve para imprimir el grafo graficamente como una lista de adyacencia*/
 void Grafo :: ListaAdyacencia(){
 
 	Vertice *verticeAux;
@@ -93,7 +106,7 @@ void Grafo :: ListaAdyacencia(){
 		cout<<verticeAux->parada->verNombre() <<"-->";
 		aristaAux = verticeAux->adyacente;
 		while(aristaAux != NULL) {
-			cout<<aristaAux->Adyacente->nombre <<"-->";
+			cout<<aristaAux->Adyacente->parada->verNombre() <<"-->";
 			aristaAux = aristaAux->siguiente;
 		}
 		verticeAux = verticeAux->siguiente;

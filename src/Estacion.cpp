@@ -25,8 +25,39 @@ Estacion::Estacion(std::string informacionEstacion, std::string tipoTransporte){
 		this->tipoTransporte="colectivo";
 
 	}
-	this->adyacentes=new Lista<Estacion*>;
+	//this->adyacentes=new Lista<Estacion*>;
 }
+Estacion::Estacion (std::string informacionEstacion){
+
+		std::stringstream registro;
+		std::string dato;
+		std::string longitud, latitud;
+		registro<<informacionEstacion;
+		unsigned int columnaLeida=1;
+
+		while(getline(registro,dato,',')){
+					switch(columnaLeida){
+					case 1:{
+						longitud=dato;
+					}break;
+
+					case 2:{
+						latitud=dato;
+					}break;
+
+					case 4:{
+						this->linea=dato;
+					}break;
+
+					case 5:{
+						this->nombre=dato;
+					}break;
+				}
+					columnaLeida+=1;
+			}
+
+		this->ubicacion = new Coordenadas (longitud, latitud);
+	}
 
 void Estacion::leerInformacionSubte(std::string informacion){
 	std::stringstream registro;
@@ -58,6 +89,9 @@ void Estacion::leerInformacionSubte(std::string informacion){
 
 	this->ubicacion = new Coordenadas (longitud, latitud);
 }
+
+
+
 
 void Estacion::leerInformacionFerrocarril(std::string informacion){
 	std::stringstream registro;

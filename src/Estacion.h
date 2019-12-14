@@ -21,7 +21,7 @@ class Estacion {
 		std::string tipoTransporte; 
 		std::string nombre;
 
-		Lista<Estacion*>*adyacentes;
+		//Lista<Estacion*>*adyacentes;
 		Coordenadas * ubicacion;
 
 		void leerInformacionSubte(std::string informacion);
@@ -31,7 +31,7 @@ class Estacion {
 	public:
 
 		Estacion(std::string informacionEstacion, std::string tipoTransporte);
-
+		Estacion (std::string informacionBocaSubte);
 		Coordenadas verUbicacion(){
 			return (*ubicacion);
 		}
@@ -45,38 +45,7 @@ class Estacion {
 		float verUbicacionLongitud(){
         	return this->ubicacion->verLongitud();
         }
-		void agregarAdyacente(Estacion * adyacente){
-			/*si no es la misma estacion*/
-			bool existe=false;
 
-			if(*ubicacion!=adyacente->verUbicacion()){
-				adyacentes->iniciarCursor();
-				/*veo si esa adyacencia(la Estacion* adyacente) esta en la lista adyacentes*/
-				while(adyacentes->avanzarCursor()&&!existe){
-					existe=(adyacentes->obtenerCursor()->verNombre()==adyacente->verNombre());
-				}
-				/*si no está, la agrego*/
-				if(!existe){
-					this->adyacentes->agregar(adyacente);
-
-				}
-			}
-
-		}
-		unsigned int verCantAdyacentes(){
-			return this->adyacentes->contarElementos();
-		}
-		void obtenerAdyacente(std::vector<Estacion> *adyacentesVacia){
-			if(!adyacentes->estaVacia()){
-				adyacentes->iniciarCursor();
-				while(adyacentes->avanzarCursor()){
-					//adyacentesVacia->push_back(*(adyacentes.obtenerCursor()));
-				}
-			}
-		}
-		Lista<Estacion*>*obtenerAdyacentes(){
-			return this->adyacentes;
-		}
 
 		bool operator !=(Estacion* aComparar){
 			return (aComparar->verUbicacion()!=(*ubicacion))&&(this->nombre!=aComparar->nombre);
@@ -95,7 +64,6 @@ class Estacion {
 		~Estacion(){
 			delete this->ubicacion;
 
-			delete adyacentes;
 	}
 };
 

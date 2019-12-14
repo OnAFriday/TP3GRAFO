@@ -79,15 +79,15 @@ void Grafo::insertarVertice(Estacion *parada){
  * post:
  * para cada linea crea una estacion y la agrega a un vertice del grafo
  * */
-void Grafo::cargarVertices(Lista<std::string>*bocas){
+void Grafo::cargarVertices(Lista<std::string>*registros, std::string tipoTransporte){
 	/*no verifica si la estacion ya existe en el grafo, por ej una boca de subte
 	 * siempre tiene su respectiva parte en otra calle con el mismo nombre pero en otro sentido de
 	 * la linea o simplemente ingreso desde otra calle. Todas quedan cargadas*/
-	bocas->iniciarCursor();
+	registros->iniciarCursor();
 
-	while(bocas->avanzarCursor()) {
-		std::string infoEstacion = bocas->obtenerCursor();
-		Estacion* nuevaEstacion = new Estacion (infoEstacion);
+	while(registros->avanzarCursor()) {
+		std::string infoEstacion = registros->obtenerCursor();
+		Estacion* nuevaEstacion = new Estacion (infoEstacion ,tipoTransporte);
 		insertarVertice(nuevaEstacion);
 	}
 }

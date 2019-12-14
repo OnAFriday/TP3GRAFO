@@ -14,7 +14,6 @@
 #include <sstream>
 #include "Coordenadas.h"
 #include "Lista.h"
-#include <vector>
 class Estacion {
 	private:
 		std::string linea;
@@ -31,7 +30,7 @@ class Estacion {
 	public:
 
 		Estacion(std::string informacionEstacion, std::string tipoTransporte);
-		Estacion (std::string informacionBocaSubte);
+
 		Coordenadas verUbicacion(){
 			return (*ubicacion);
 		}

@@ -14,30 +14,26 @@ Ciudad::Ciudad(){
 	this->estacionesFerrocarril=new Grafo;
 	this->paradasColectivo=new Grafo;
 	this->subtes=new Grafo;
+	this->transportes=new Grafo;
 
 	Archivo trenes(ARCHIVO_TRENES);
 	Lista<std::string> registrosEstacionesTren;
 	trenes.leerArchivo(registrosEstacionesTren);
-	std::cout<<"Cargo la lista de estaciones de ferrocarril "<<std::endl;
-	this->estacionesFerrocarril->cargarVertices(&registrosEstacionesTren);
-	std::cout<<"Cargaron los vertices "<<std::endl;
-	this->estacionesFerrocarril->cargarAristas();
-	std::cout<<"Cargaron las aristas "<<std::endl;
 
 	Archivo subtes(ARCHIVO_SUBTES);
 	Lista<std::string> registrosBocasSubte;
 	subtes.leerArchivo(registrosBocasSubte);
-	std::cout<<"Cargo la lista de bocas "<<std::endl;
-	this->subtes->cargarVertices(&registrosBocasSubte);
-	std::cout<<"Cargaron los vertices "<<std::endl;
-	this->subtes->cargarAristas();
-	std::cout<<"Cargaron las aristas "<<std::endl;
-
 	/*
 	Archivo colectivos(ARCHIVO_COLECTIVOS);
 	Lista<std::string> registrosEstacionesColectivo;
 	colectivos.leerArchivo(registrosEstacionesColectivo);
 	 */
+
+	this->transportes->cargarVertices(&registrosBocasSubte, "subte");
+	this->transportes->cargarVertices(&registrosEstacionesTren,"ferrocarril");
+	std::cout<<"Cargo la lista de vertices "<<std::endl;
+	this->transportes->cargarAristas();
+	std::cout<<"Cargaron las adyacencias "<<std::endl;
 
 
 
@@ -55,6 +51,7 @@ Ciudad::~Ciudad(){
 	delete this->subtes;
 	delete this->estacionesFerrocarril;
 	delete this->paradasColectivo;
+	delete this->transportes;
 
 }
 

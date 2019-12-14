@@ -12,52 +12,21 @@ Estacion::Estacion(std::string informacionEstacion, std::string tipoTransporte){
 
 	if(tipoTransporte == "ferrocarril"){
 		this->leerInformacionFerrocarril(informacionEstacion);
-		this->tipoTransporte="ferrocarril";
+		this->tipoTransporte=tipoTransporte;
 	}
 
 	else if(tipoTransporte == "subte"){
 		this->leerInformacionSubte(informacionEstacion);
-		this->tipoTransporte="subte";
+		this->tipoTransporte=tipoTransporte;
 	}
 
 	else if(tipoTransporte == "colectivo"){
 		this->leerInformacionColectivo(informacionEstacion);
-		this->tipoTransporte="colectivo";
+		this->tipoTransporte=tipoTransporte;
 
 	}
-	//this->adyacentes=new Lista<Estacion*>;
+	this->ubicacion=NULL;
 }
-Estacion::Estacion (std::string informacionEstacion){
-
-		std::stringstream registro;
-		std::string dato;
-		std::string longitud, latitud;
-		registro<<informacionEstacion;
-		unsigned int columnaLeida=1;
-
-		while(getline(registro,dato,',')){
-					switch(columnaLeida){
-					case 1:{
-						longitud=dato;
-					}break;
-
-					case 2:{
-						latitud=dato;
-					}break;
-
-					case 4:{
-						this->linea=dato;
-					}break;
-
-					case 5:{
-						this->nombre=dato;
-					}break;
-				}
-					columnaLeida+=1;
-			}
-
-		this->ubicacion = new Coordenadas (longitud, latitud);
-	}
 
 void Estacion::leerInformacionSubte(std::string informacion){
 	std::stringstream registro;
@@ -67,26 +36,22 @@ void Estacion::leerInformacionSubte(std::string informacion){
 	unsigned int columnaLeida=1;
 
 	while(getline(registro,dato,',')){
-				switch(columnaLeida){
-				case 1:{
-					longitud=dato;
-				}break;
-
-				case 2:{
-					latitud=dato;
-				}break;
-
-				case 4:{
-					this->linea=dato;
-				}break;
-
-				case 5:{
-					this->nombre=dato;
-				}break;
+			switch(columnaLeida){
+			case 1:{
+				longitud=dato;
+			}break;
+			case 2:{
+				latitud=dato;
+			}break;
+			case 4:{
+				this->linea=dato;
+			}break;
+			case 5:{
+				this->nombre=dato;
+			}break;
 			}
-				columnaLeida+=1;
-		}
-
+		columnaLeida+=1;
+	}
 	this->ubicacion = new Coordenadas (longitud, latitud);
 }
 

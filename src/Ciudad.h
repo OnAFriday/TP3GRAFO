@@ -21,7 +21,8 @@ class Ciudad {
 
 		Grafo* subtes;
 		Grafo* paradasColectivo;
-		Grafo *estacionesFerrocarril;
+		Grafo* estacionesFerrocarril;
+		Grafo * transportes;
 
 	private:
 

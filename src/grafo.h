@@ -44,7 +44,7 @@ class Grafo {
 		int verCantidadVertices();
 		Vertice *getVertice(Estacion *parada);
 		void insertarVertice(Estacion *parada);
-		void cargarVertices(Lista<std::string>*estaciones);
+		void cargarVertices(Lista<std::string>*estaciones, std::string tipoTransporte);
 		void cargarAristas();
 		void insertarArista (Vertice *origen, Vertice *destino, ui distancia);
 		/*de aca abajo metodos no probados*/

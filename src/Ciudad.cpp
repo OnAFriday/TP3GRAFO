@@ -28,6 +28,10 @@ Ciudad::Ciudad(){
 	Lista<std::string> registrosEstacionesColectivo;
 	colectivos.leerArchivo(registrosEstacionesColectivo);
 	 */
+	this->subtes->cargarVertices(&registrosBocasSubte, "subte");
+	this->subtes->cargarAristas();
+	this->estacionesFerrocarril->cargarVertices(&registrosEstacionesTren, "ferrocarril");
+	this->estacionesFerrocarril->cargarAristas();
 
 	this->transportes->cargarVertices(&registrosBocasSubte, "subte");
 	this->transportes->cargarVertices(&registrosEstacionesTren,"ferrocarril");
@@ -45,7 +49,9 @@ void Ciudad::verRedSubte(){
 void Ciudad::verRedTren(){
 	this->estacionesFerrocarril->ListaAdyacencia();
 }
-
+void Ciudad::verRedTransporte(){
+	this->transportes->ListaAdyacencia();
+}
 
 Ciudad::~Ciudad(){
 	delete this->subtes;

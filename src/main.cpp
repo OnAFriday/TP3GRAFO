@@ -9,6 +9,7 @@ int main(){
 	Ciudad caba;
 	caba.verRedSubte();
 	caba.verRedTren();
+	caba.verRedTransporte();
 	return 0;
 }
 

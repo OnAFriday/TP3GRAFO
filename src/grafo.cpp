@@ -87,6 +87,7 @@ void Grafo::cargarVertices(Lista<std::string>*registros, std::string tipoTranspo
 
 	while(registros->avanzarCursor()) {
 		std::string infoEstacion = registros->obtenerCursor();
+		std::cout<<infoEstacion<<std::endl;
 		Estacion* nuevaEstacion = new Estacion (infoEstacion ,tipoTransporte);
 		insertarVertice(nuevaEstacion);
 	}

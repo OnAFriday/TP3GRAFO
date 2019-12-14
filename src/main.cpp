@@ -8,7 +8,7 @@
 int main(){
 	Ciudad caba;
 	caba.verRedSubte();
-
+	caba.verRedTren();
 	return 0;
 }
 

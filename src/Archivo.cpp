@@ -8,7 +8,7 @@
 #include "Archivo.h"
 #include <fstream>
 #include "Lista.h"
-
+#include <iostream>
 Archivo::Archivo(std::string linkArchivoRelativo){
 
 	std::ifstream archivo(linkArchivoRelativo.c_str());
@@ -17,6 +17,7 @@ Archivo::Archivo(std::string linkArchivoRelativo){
 		this->linkArchivo=linkArchivoRelativo;
 	}
 	else{
+		std::cout<<"Ruta de archivo invalida "<<std::endl;
 		throw std::string ("Ruta invalida ");
 	}
 }

@@ -3,6 +3,7 @@
 Grafo::Grafo(){
 
 	primero = NULL;
+	this->tamanio=0;
 }
 
 
@@ -12,16 +13,8 @@ bool Grafo :: estaVacio(){
 }
 
 
-int Grafo :: Tamanio(){
-
-	int contador = 0;
-	Vertice *aux;
-	aux = primero;
-	while (aux != NULL){
-		contador++;
-		aux = aux->siguiente;
-	}
-	return contador;
+int Grafo :: verCantidadVertices(){
+	return this->tamanio;
 }
 
 
@@ -79,6 +72,7 @@ void Grafo::insertarVertice(Estacion *parada){
 		}
 		aux->siguiente = nuevo;
 	}
+	this->tamanio++;
 }
 /*pre: lista con todos los campos de una boca de subte que lee de un archivo
  * ej: campos boca subte 1-campos boca subte 2- etc
@@ -180,6 +174,7 @@ Grafo :: ~Grafo(){
 
 		aux = primero;
 		primero = primero->siguiente;
+
 		delete(aux);
 	}
 }

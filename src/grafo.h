@@ -29,27 +29,31 @@ class Arista {
 	Vertice *Adyacente;
 	int distancia;
 	friend class Grafo;
+
 };
 
 class Grafo {
 	typedef unsigned int ui;
 
 	Vertice *primero;
+	ui tamanio;
+
 	public:
 		Grafo();
 		bool estaVacio();
-		int Tamanio();
-
+		int verCantidadVertices();
 		Vertice *getVertice(Estacion *parada);
 		void insertarVertice(Estacion *parada);
 		void cargarVertices(Lista<std::string>*estaciones);
 		void cargarAristas();
-		/*de aca abajo metodos no probados*/
 		void insertarArista (Vertice *origen, Vertice *destino, ui distancia);
+		/*de aca abajo metodos no probados*/
+
 		void ListaAdyacencia();
 		void EliminarArista(Vertice *origen, Vertice *destino);
-		~Grafo();
 		void EliminarVertice(Vertice *vertice);
+		~Grafo();
+
 };
 
 

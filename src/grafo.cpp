@@ -1,14 +1,14 @@
 #include "grafo.h"
 
-void Grafo :: Inicializar(){
+Grafo::Grafo(){
 
-	h = NULL;
+	primero = NULL;
 }
 
 
-bool Grafo :: Vacio(){
+bool Grafo :: estaVacio(){
 
-	return h==NULL;
+	return primero==NULL;
 }
 
 
@@ -16,7 +16,7 @@ int Grafo :: Tamanio(){
 
 	int contador = 0;
 	Vertice *aux;
-	aux = h;
+	aux = primero;
 	while (aux != NULL){
 		contador++;
 		aux = aux->siguiente;
@@ -25,57 +25,54 @@ int Grafo :: Tamanio(){
 }
 
 
-Vertice *Grafo :: GetVertice (string nombre){
-	Vertice *aux;
-	aux=h;
-	while (aux != NULL){
-		if (aux->nombre == nombre){
-			return aux;
-		}
-		aux = aux->siguiente;
-	}
-	return NULL;
 
+/*Declarar en tda Estacion estacionAux==estacion*/
+Vertice *Grafo::getVertice(Estacion *parada){
+	Vertice *iterar=NULL;
+	bool encontrado =false;
+	iterar=primero;
+	while (iterar != NULL&&!encontrado){
+		encontrado=iterar->parada == parada;
+
+		iterar = iterar->siguiente;
+	}
+	return iterar;
 }
 
 
-void Grafo :: InsertaArista (Vertice *origen, Vertice *destino, int precio){
+void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
 
-	Arista * nueva = new Arista;
-	nueva->precio = precio;
-	nueva->siguiente = NULL;
-	nueva->Adyacente = NULL;
+	Arista * aristaNueva = new Arista;
+	aristaNueva->distancia = distancia;
+	aristaNueva->siguiente = NULL;
+	aristaNueva->Adyacente = NULL;
 
 	Arista * aux;
 
 	aux = origen->adyacente;
 	if(aux == NULL){
-		origen->adyacente = nueva;
-		nueva->Adyacente = destino;
+		origen->adyacente = aristaNueva;
+		aristaNueva->Adyacente = destino;
 	}
 	else {
 		while (aux->siguiente != NULL){
 			aux = aux->siguiente;
 		}
-		aux->siguiente = nueva;
-		nueva->Adyacente = destino;
+		aux->siguiente = aristaNueva;
+		aristaNueva->Adyacente = destino;
 	}
 }
-
-
-void Grafo :: InsertaVertice(string nombre){
-
+void Grafo::insertarVertice(Estacion *parada){
 	Vertice *nuevo = new Vertice;
-	nuevo->nombre = nombre;
 	nuevo->siguiente = NULL;
 	nuevo->adyacente = NULL;
-
-	if (Vacio()){
-		h = nuevo;
+	nuevo->parada=parada;
+	if (this->estaVacio()){
+		primero = nuevo;
 	}
 	else{
 		Vertice *aux;
-		aux = h;
+		aux = primero;
 		while(aux->siguiente != NULL){
 			aux = aux->siguiente;
 		}
@@ -84,12 +81,13 @@ void Grafo :: InsertaVertice(string nombre){
 }
 
 
+
 void Grafo :: ListaAdyacencia(){
 
 	Vertice *verticeAux;
 	Arista *aristaAux;
 
-	verticeAux = h;
+	verticeAux = primero;
 	while (verticeAux != NULL){
 		cout<<verticeAux->nombre <<"-->";
 		aristaAux = verticeAux->adyacente;
@@ -136,14 +134,14 @@ void Grafo :: EliminarArista(Vertice *origen, Vertice *destino){
 }
 
 
-void Grafo :: Anular(){
+Grafo :: ~Grafo(){
 
 	Vertice *aux;
 
-	while(h != NULL){
+	while(primero != NULL){
 
-		aux = h;
-		h = h->siguiente;
+		aux = primero;
+		primero = primero->siguiente;
 		delete(aux);
 	}
 }

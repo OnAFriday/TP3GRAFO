@@ -123,22 +123,26 @@ void Grafo::cargarAristas(){
 
 
 void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
-	Arista  *aristaNueva= new Arista;
-	aristaNueva->distancia = distancia;
-	aristaNueva->siguiente = NULL;
-	aristaNueva->Adyacente = destino;
-	Arista * adyacente;
-	adyacente = origen->adyacente;
-	if(adyacente == NULL){
-		origen->adyacente = aristaNueva;
-		//aristaNueva->Adyacente = destino;
-	}
-	else {
-		while (adyacente->siguiente != NULL){
-			adyacente = adyacente->siguiente;
+	if(origen!=destino&&origen->obtenerDato()->verNombre()!=destino->obtenerDato()->verNombre()){
+		Arista  *aristaNueva= new Arista;
+		aristaNueva->distancia = distancia;
+		aristaNueva->siguiente = NULL;
+		aristaNueva->Adyacente = destino;
+		Arista * adyacente;
+		adyacente = origen->adyacente;
+		if(adyacente == NULL){
+			origen->adyacente = aristaNueva;
+			//aristaNueva->Adyacente = destino;
 		}
-		adyacente = aristaNueva;
-		//aristaNueva->Adyacente = destino;
+		else {
+			while (adyacente != NULL){
+
+				adyacente = adyacente->siguiente;
+			}
+			adyacente = aristaNueva;
+			//aristaNueva->Adyacente = destino;
+		}
+
 	}
 
 }

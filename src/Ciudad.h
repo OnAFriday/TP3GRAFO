@@ -15,6 +15,7 @@
 #include "Coordenadas.h"
 #include "grafo.h"
 
+
 class Ciudad {
 
 	private:
@@ -35,14 +36,14 @@ class Ciudad {
 		/*post: crea ciudad con datos de transportes de archivos csv
 		 */
 		Ciudad();
-
 		void verRedSubte();
 		void verRedTren();
 		void verRedTransporte();
-		void verRecorridoConCombinacion(Coordenadas , Coordenadas j){
+
+		void verRecorridoConCombinacion(Coordenadas i , Coordenadas j){
 
 		};
-		void verRecorridoDirecto(Coordenadas , Coordenadas j){
+		void verRecorridoDirecto(Coordenadas i , Coordenadas j){
 
 		}
 

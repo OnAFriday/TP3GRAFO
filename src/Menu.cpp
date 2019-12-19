@@ -41,15 +41,17 @@ void Menu::iniciarMenu(){
 		if(opcionMenu=='1' || opcionMenu=='2'){
 
 			cout<<"ORIGEN"<<endl;
-			cout<<"   Ingrese longitud de origen: ";
-			cin>>auxLongitudOrigen;
+
 			cout<<"   Ingrese latitud de origen: ";
 			cin>>auxLatitudOrigen;
+			cout<<"   Ingrese longitud de origen: ";
+			cin>>auxLongitudOrigen;
 			cout<<"DESTINO"<<endl;
-			cout<<"   Ingrese longitud de destino: ";
-			cin>>auxLongitudDestino;
+
 			cout<<"   Ingrese latitud de destino: ";
 			cin>>auxLatitudDestino;
+			cout<<"   Ingrese longitud de destino: ";
+			cin>>auxLongitudDestino;
 		}
 		Coordenadas origen(auxLongitudOrigen, auxLatitudOrigen);
 		//Coordenadas origen1("-58.3972499423143", "-34.5878038772456");

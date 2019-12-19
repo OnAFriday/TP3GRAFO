@@ -60,7 +60,6 @@ class Vertice{
 	~Vertice(){
 
 		while(adyacente != NULL) {
-			//std::cout<<aristaAux->Adyacente->parada->verNombre() <<"-->";
 			Arista *aristaAux=adyacente;
 			adyacente=aristaAux->obtenerAristaSig();
 

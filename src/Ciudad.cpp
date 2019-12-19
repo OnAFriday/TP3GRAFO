@@ -38,7 +38,7 @@ Ciudad::Ciudad(){
 	//this->estacionesFerrocarril->cargarAristas();
 
 	this->transportes->cargarVertices(&registrosBocasSubte, "subte");
-	//this->transportes->cargarVertices(&registrosEstacionesTren,"ferrocarril");
+	this->transportes->cargarVertices(&registrosEstacionesTren,"ferrocarril");
 	//this->transportes->cargarVertices(&registrosEstacionesColectivo,"colectivo");
 
 	//std::cout<<"Cargo la lista de vertices "<<std::endl;
@@ -48,6 +48,14 @@ Ciudad::Ciudad(){
 
 
 }
+
+void Ciudad::verRecorridoConCombinacion(Coordenadas i , Coordenadas j){
+
+
+
+};
+
+
 /*post: tendria que imprimir una lista con las bocas de subte y a la derecha sus adyacentes;*/
 void Ciudad::verRedSubte(){
 	this->subtes->ListaAdyacencia();

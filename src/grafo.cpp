@@ -4,6 +4,7 @@ Grafo::Grafo(){
 
 	primero = NULL;
 	this->tamanio=0;
+	ultimo=NULL;
 
 }
 
@@ -34,34 +35,7 @@ Vertice *Grafo::getVertice(Estacion *parada){
 	return iterar;
 }
 
-void Grafo::insertarVertice(Estacion *parada){
-	Vertice *nuevo = new Vertice;
-	nuevo->siguiente = NULL;
-	nuevo->adyacente = NULL;
-	nuevo->parada=parada;
-	if (estaVacio()){
-		primero = nuevo;
-	}
-	else{
-		Vertice *aux;
-		aux = primero;
-		while(aux->siguiente != NULL){
-			aux = aux->siguiente;
-		}
 
-		if(nuevo->parada->verUbicacion().valida()){
-			aux->siguiente = nuevo;
-
-		}
-		else{
-			std::cout<<"Un vertice incorrecto"<<std::endl;
-			aux->siguiente = nuevo;
-			/*caso donde el vertice tiene una parada con valores invalidos, como el titulo del archivo
-			 * linea- ruta- etc*/
-		}
-	}
-	this->tamanio++;
-}
 /*pre: lista con todos los campos de una boca de subte que lee de un archivo
  * ej: campos boca subte 1-campos boca subte 2- etc
  * post:
@@ -119,6 +93,48 @@ void Grafo::cargarAristas(){
 		}
 		iterando=iterando->siguiente;
 	}
+}
+void Grafo::insertarVertice(Estacion *parada){
+	Vertice *nuevo = new Vertice;
+	nuevo->siguiente = NULL;
+	nuevo->adyacente = NULL;
+	nuevo->parada=parada;
+	if (estaVacio()){
+		primero = nuevo;
+		ultimo=nuevo;
+	}
+	else{
+
+		ultimo->siguiente=nuevo;
+		ultimo=nuevo;
+
+		Vertice* posibleAdyacente=this->primero;
+		Coordenadas ubicacionAgregada=nuevo->parada->verUbicacion();
+		while(posibleAdyacente!=NULL){
+			Coordenadas ubicacionAdyacentePosible=posibleAdyacente->parada->verUbicacion();
+			if(posibleAdyacente->parada->verLinea()==nuevo->parada->verLinea()&&
+					nuevo!=posibleAdyacente){
+				ui distancia=ubicacionAdyacentePosible.distanciaMetros(ubicacionAgregada);
+
+				this->insertarArista(posibleAdyacente, nuevo, distancia);
+
+			}
+			else{
+				ui distancia=ubicacionAdyacentePosible.distanciaMetros(ubicacionAgregada);
+
+				if (distancia<500&&nuevo!=posibleAdyacente){
+					this->insertarArista(posibleAdyacente, nuevo, distancia);
+				}
+			}
+
+			posibleAdyacente=posibleAdyacente->siguiente;
+
+		}
+
+
+
+	}
+	this->tamanio++;
 }
 
 

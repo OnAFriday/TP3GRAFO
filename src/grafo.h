@@ -8,9 +8,11 @@
 
 
 class Grafo {
+
 	typedef unsigned int ui;
 
 	Vertice *primero;
+	Vertice* ultimo;
 	ui tamanio;
 
 	public:
@@ -25,7 +27,10 @@ class Grafo {
 		void verVertices();
 		void ListaAdyacencia();
 		/*de aca abajo metodos no probados*/
+		void dijkstra(Vertice* origen, Vertice* destino){
 
+
+		}
 		void EliminarArista(Vertice *origen, Vertice *destino);
 		void EliminarVertice(Vertice *vertice);
 		~Grafo();

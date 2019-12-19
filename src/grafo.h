@@ -7,9 +7,28 @@
 #include "Estacion.h"
 using namespace std;
 
+class Vertice;
+class Arista {
+	typedef unsigned int ui;
 
-class Arista;
+	Arista *siguiente;
+	Vertice *Adyacente;
+	ui distancia;
+	friend class Grafo;
+	Arista(){
+		this->siguiente=NULL;
+		this->Adyacente=NULL;
+		this->distancia=0;
+	}
+	public:
+	Arista* obtenerAristaSig(){
+		return this->siguiente;
+	}
+	ui obtenerDistancia(){
+		return this->distancia;
+	}
 
+};
 
 class Vertice{
 
@@ -19,22 +38,28 @@ class Vertice{
 	string nombre;
 	Estacion* parada;
 	friend class Grafo;
+
+	public:
+
 	bool operator !=(Vertice* aComparar){
-		return (this->parada!=aComparar->parada);
+			return (this->parada!=aComparar->parada);
+		}
+	~Vertice(){
+		Arista *aristaABorrar=this->adyacente;
+		this->adyacente=aristaABorrar->obtenerAristaSig();
+		while(adyacente!=NULL){
+			delete aristaABorrar;
+			aristaABorrar=this->adyacente;
+			this->adyacente=aristaABorrar->obtenerAristaSig();
+		}
+		delete this->parada;
+
 	}
 
 };
 
 
-class Arista {
-	typedef unsigned int ui;
 
-	Arista *siguiente;
-	Vertice *Adyacente;
-	int distancia;
-	friend class Grafo;
-
-};
 
 class Grafo {
 	typedef unsigned int ui;

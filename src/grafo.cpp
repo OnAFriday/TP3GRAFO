@@ -72,11 +72,9 @@ void Grafo::cargarVertices(Lista<std::string>*registros, std::string tipoTranspo
 
 	while(registros->avanzarCursor()) {
 		std::string infoEstacion = registros->obtenerCursor();
-		//std::cout<<tipoTransporte<<std::endl;
 
 		Estacion* nuevaEstacion = new Estacion (infoEstacion ,tipoTransporte);
-		/*std::cout<<nuevaEstacion->verUbicacionLatitud()<<nuevaEstacion->verUbicacionLongitud()
-				<<nuevaEstacion->verNombre()<<nuevaEstacion->verLinea()<<std::endl;*/
+
 		insertarVertice(nuevaEstacion);
 	}
 }
@@ -104,9 +102,8 @@ void Grafo::cargarAristas(){
 			ui distancia=ubicacionadyacentePosible.distanciaMetros(ubicacionIterada);
 			if(iterando->parada->verLinea()==posibleAdyacente->parada->verLinea()&&
 					iterando!=posibleAdyacente){
-				if(distancia<=1000){
-					this->insertarArista(iterando, posibleAdyacente, distancia);
-				}
+				this->insertarArista(iterando, posibleAdyacente, distancia);
+
 			}
 			else{
 				if (distancia<500&&iterando!=posibleAdyacente){
@@ -123,7 +120,7 @@ void Grafo::cargarAristas(){
 
 
 void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
-	Arista * aristaNueva = new Arista;
+	Arista  *aristaNueva= new Arista;
 	aristaNueva->distancia = distancia;
 	aristaNueva->siguiente = NULL;
 	aristaNueva->Adyacente = destino;
@@ -199,14 +196,11 @@ void Grafo :: EliminarArista(Vertice *origen, Vertice *destino){
 
 Grafo :: ~Grafo(){
 
-	Vertice *aux;
+	Vertice *aBorrar=primero;
 
 	while(primero != NULL){
-
-		aux = primero;
-		primero = primero->siguiente;
-
-		delete(aux);
+		this->primero=aBorrar->siguiente;
+		delete(aBorrar);
 	}
 }
 

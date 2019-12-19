@@ -23,26 +23,28 @@ Ciudad::Ciudad(){
 	Archivo subtes(ARCHIVO_SUBTES);
 	Lista<std::string> registrosBocasSubte;
 	subtes.leerArchivo(registrosBocasSubte);
-	/*
+/*
 	Archivo colectivos(ARCHIVO_COLECTIVOS);
 	Lista<std::string> registrosEstacionesColectivo;
 	colectivos.leerArchivo(registrosEstacionesColectivo);
-	 */
-	this->subtes->cargarVertices(&registrosBocasSubte, "subte");
+*/
+	//this->subtes->cargarVertices(&registrosBocasSubte, "subte");
 	//std::cout<<"Cargo la lista de vertices "<<std::endl;
 	//this->subtes->verVertices();
-	this->subtes->cargarAristas();
+	//this->subtes->cargarAristas();
 	//std::cout<<"Cargaron las adyacencias "<<std::endl;
-/*
-	this->estacionesFerrocarril->cargarVertices(&registrosEstacionesTren, "ferrocarril");
-	this->estacionesFerrocarril->cargarAristas();
-*//*
+
+	//this->estacionesFerrocarril->cargarVertices(&registrosEstacionesTren, "ferrocarril");
+	//this->estacionesFerrocarril->cargarAristas();
+
 	this->transportes->cargarVertices(&registrosBocasSubte, "subte");
-	this->transportes->cargarVertices(&registrosEstacionesTren,"ferrocarril");
-	std::cout<<"Cargo la lista de vertices "<<std::endl;
+	//this->transportes->cargarVertices(&registrosEstacionesTren,"ferrocarril");
+	//this->transportes->cargarVertices(&registrosEstacionesColectivo,"colectivo");
+
+	//std::cout<<"Cargo la lista de vertices "<<std::endl;
 	this->transportes->cargarAristas();
-	std::cout<<"Cargaron las adyacencias "<<std::endl;
-*/
+	//std::cout<<"Cargaron las adyacencias "<<std::endl;
+
 
 
 }

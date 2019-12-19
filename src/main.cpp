@@ -7,9 +7,9 @@
 #include "Ciudad.h"
 int main(){
 	Ciudad caba;
-	caba.verRedSubte();
+	//caba.verRedSubte();
 	//caba.verRedTren();
-	//caba.verRedTransporte();
+	caba.verRedTransporte();
 	return 0;
 }
 

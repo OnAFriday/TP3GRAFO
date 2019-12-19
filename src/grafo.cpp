@@ -42,13 +42,16 @@ void Grafo::cargarVertices(Lista<std::string>*registros, std::string tipoTranspo
 	 * siempre tiene su respectiva parte en otra calle con el mismo nombre pero en otro sentido de
 	 * la linea o simplemente ingreso desde otra calle. Todas quedan cargadas*/
 	registros->iniciarCursor();
+	ui index=0;
 
 	while(registros->avanzarCursor()) {
 		std::string infoEstacion = registros->obtenerCursor();
 
 		Estacion* nuevaEstacion = new Estacion (infoEstacion ,tipoTransporte);
 
-		insertarVertice(nuevaEstacion);
+		insertarVertice(nuevaEstacion, index);
+
+		index++;
 	}
 }
 void Grafo::verVertices(){
@@ -90,11 +93,12 @@ void Grafo::cargarAristas(){
 		iterando=iterando->siguiente;
 	}
 }
-void Grafo::insertarVertice(Estacion *parada){
+void Grafo::insertarVertice(Estacion *parada, ui index){
 	Vertice *nuevo = new Vertice;
 	nuevo->siguiente = NULL;
 	nuevo->adyacente = NULL;
 	nuevo->parada=parada;
+	nuevo->index=index;
 	if (estaVacio()){
 		primero = nuevo;
 		ultimo=nuevo;

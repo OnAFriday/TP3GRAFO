@@ -23,6 +23,9 @@ class Arista {
 		this->Adyacente=NULL;
 		this->distancia=0;
 	}
+	Vertice* obtenerVerticeDestino(){
+		return this->Adyacente;
+	}
 	Arista* obtenerAristaSig(){
 		return this->siguiente;
 	}
@@ -42,6 +45,7 @@ class Vertice{
 	Arista *adyacente;
 	Estacion* parada;
 	friend class Grafo;
+	ui index;
 
 	public:
 
@@ -56,6 +60,9 @@ class Vertice{
 	}
 	Estacion *obtenerDato(){
 		return this->parada;
+	}
+	ui obtenerMarca(){
+		return this->index;
 	}
 	~Vertice(){
 

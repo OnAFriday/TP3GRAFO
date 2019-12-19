@@ -196,9 +196,10 @@ void Grafo :: EliminarArista(Vertice *origen, Vertice *destino){
 
 Grafo :: ~Grafo(){
 
-	Vertice *aBorrar=primero;
 
 	while(primero != NULL){
+		Vertice *aBorrar=primero;
+
 		this->primero=aBorrar->siguiente;
 		delete(aBorrar);
 	}

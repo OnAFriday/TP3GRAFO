@@ -15,17 +15,21 @@ class Arista {
 	Vertice *Adyacente;
 	ui distancia;
 	friend class Grafo;
+	public:
+
 	Arista(){
 		this->siguiente=NULL;
 		this->Adyacente=NULL;
 		this->distancia=0;
 	}
-	public:
 	Arista* obtenerAristaSig(){
 		return this->siguiente;
 	}
 	ui obtenerDistancia(){
 		return this->distancia;
+	}
+	~Arista(){
+
 	}
 
 };
@@ -35,22 +39,31 @@ class Vertice{
 	typedef unsigned int ui;
 	Vertice *siguiente;
 	Arista *adyacente;
-	string nombre;
 	Estacion* parada;
 	friend class Grafo;
 
 	public:
 
+	Arista* obtenerAristaAdyacente(){
+		return this->adyacente;
+	}
+	Vertice* obtenerVerticeSig(){
+		return this->siguiente;
+	}
 	bool operator !=(Vertice* aComparar){
 			return (this->parada!=aComparar->parada);
-		}
+	}
+	Estacion *obtenerDato(){
+		return this->parada;
+	}
 	~Vertice(){
-		Arista *aristaABorrar=this->adyacente;
-		this->adyacente=aristaABorrar->obtenerAristaSig();
+
 		while(adyacente!=NULL){
-			delete aristaABorrar;
-			aristaABorrar=this->adyacente;
+			Arista *aristaABorrar=this->adyacente;
+
 			this->adyacente=aristaABorrar->obtenerAristaSig();
+
+			delete aristaABorrar;
 		}
 		delete this->parada;
 

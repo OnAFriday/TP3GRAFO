@@ -14,6 +14,7 @@ class Grafo {
 	Vertice *primero;
 	Vertice* ultimo;
 	ui tamanio;
+	int ** matriz;
 
 	public:
 		Grafo();
@@ -35,15 +36,18 @@ class Grafo {
 		~Grafo();
 
 		void cargarMatriz() {
-			int incidencias [this->tamanio][this->tamanio];
-			/*unsigned int distanciaMax=100000000000;
+			long int infinito = 9999999;
+			this->matriz = new int*[this->tamanio];
+			
+			for (int i = 0; i < this->tamanio; i++) {
+    			this->matriz[i] = new int[this->tamanio];
+			}
+
 			for(ui i=0; i<this->tamanio; i++){
-				Vertice * posibleAdyacente = this->primero;
-
 				for(ui j=0; j<this->tamanio; j++){
-
+					this->matriz[i][j] = infinito; 
 				}
-			}*/
+			}
 
 			Vertice * nodo = this->primero;
 			ui indice=nodo->obtenerMarca();
@@ -51,7 +55,7 @@ class Grafo {
 				Arista* aristaAdyacente=nodo->obtenerAristaAdyacente();
 				while(aristaAdyacente!=NULL){
 					ui indice2=aristaAdyacente->obtenerVerticeDestino()->obtenerMarca();
-					incidencias[indice][indice2]=aristaAdyacente->obtenerDistancia();
+					this->matriz[indice][indice2]=aristaAdyacente->obtenerDistancia();
 					aristaAdyacente=aristaAdyacente->obtenerAristaSig();
 				}
 				nodo=nodo->obtenerVerticeSig();

@@ -8,6 +8,7 @@ CPP_SRCS += \
 ../src/Ciudad.cpp \
 ../src/Estacion.cpp \
 ../src/Menu.cpp \
+../src/Vertice.cpp \
 ../src/grafo.cpp \
 ../src/main.cpp 
 
@@ -16,6 +17,7 @@ OBJS += \
 ./src/Ciudad.o \
 ./src/Estacion.o \
 ./src/Menu.o \
+./src/Vertice.o \
 ./src/grafo.o \
 ./src/main.o 
 
@@ -24,6 +26,7 @@ CPP_DEPS += \
 ./src/Ciudad.d \
 ./src/Estacion.d \
 ./src/Menu.d \
+./src/Vertice.d \
 ./src/grafo.d \
 ./src/main.d 
 

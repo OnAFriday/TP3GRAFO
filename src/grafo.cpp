@@ -4,6 +4,7 @@ Grafo::Grafo(){
 
 	primero = NULL;
 	this->tamanio=0;
+
 }
 
 
@@ -54,7 +55,9 @@ void Grafo::insertarVertice(Estacion *parada){
 		}
 		else{
 			std::cout<<"Un vertice incorrecto"<<std::endl;
-
+			aux->siguiente = nuevo;
+			/*caso donde el vertice tiene una parada con valores invalidos, como el titulo del archivo
+			 * linea- ruta- etc*/
 		}
 	}
 	this->tamanio++;
@@ -137,6 +140,7 @@ void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
 		adyacente = aristaNueva;
 		//aristaNueva->Adyacente = destino;
 	}
+
 }
 
 
@@ -152,11 +156,11 @@ void Grafo :: ListaAdyacencia(){
 		std::cout<<verticeAux->parada->verNombre() <<"-->";
 		aristaAux = verticeAux->adyacente;
 		while(aristaAux != NULL) {
-			cout<<aristaAux->Adyacente->parada->verNombre() <<"-->";
+			std::cout<<aristaAux->Adyacente->parada->verNombre() <<"-->";
 			aristaAux = aristaAux->siguiente;
 		}
 		verticeAux = verticeAux->siguiente;
-		std::cout<<endl;
+		std::cout<<std::endl;
 	}
 }
 
@@ -168,7 +172,7 @@ void Grafo :: EliminarArista(Vertice *origen, Vertice *destino){
 	actual = origen->adyacente;
 
 	if (actual == NULL){
-		cout<<"El vertice origen no tiene aristas" <<endl;
+		std::cout<<"El vertice origen no tiene aristas" <<std::endl;
 	}
 	else if (actual->Adyacente == destino){
 		origen->adyacente = actual->siguiente;
@@ -188,7 +192,7 @@ void Grafo :: EliminarArista(Vertice *origen, Vertice *destino){
 		}
 
 		if (bandera == 0){
-			cout<<"Esos dos vertices no estan conectados" <<endl;
+			std::cout<<"Esos dos vertices no estan conectados" <<std::endl;
 		}
 	}
 }
@@ -196,7 +200,7 @@ void Grafo :: EliminarArista(Vertice *origen, Vertice *destino){
 
 Grafo :: ~Grafo(){
 
-
+	/*borro vertices*/
 	while(primero != NULL){
 		Vertice *aBorrar=primero;
 

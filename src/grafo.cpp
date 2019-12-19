@@ -1,13 +1,10 @@
 #include "grafo.h"
 
 Grafo::Grafo(){
-
 	primero = NULL;
 	this->tamanio=0;
 	ultimo=NULL;
-
 }
-
 
 bool Grafo :: estaVacio(){
 
@@ -18,7 +15,6 @@ bool Grafo :: estaVacio(){
 int Grafo :: verCantidadVertices(){
 	return this->tamanio;
 }
-
 
 
 /*devuelve el vertice considerando que 2 estaciones son iguales si tienen la misma

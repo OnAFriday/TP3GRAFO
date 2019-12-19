@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 #include "Vertice.h"
-
+#include <vector>
 
 class Grafo {
 
@@ -28,9 +28,8 @@ class Grafo {
 		void ListaAdyacencia();
 		/*de aca abajo metodos no probados*/
 		void dijkstra(Vertice* origen, Vertice* destino){
-
-
 		}
+
 		void EliminarArista(Vertice *origen, Vertice *destino);
 		void EliminarVertice(Vertice *vertice);
 		~Grafo();

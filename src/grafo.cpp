@@ -137,7 +137,7 @@ void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
 		else {
 			while (adyacente != NULL){
 
-				adyacente = adyacente->siguiente;
+				adyacente = adyacente->obtenerAristaSig();
 			}
 			adyacente = aristaNueva;
 			//aristaNueva->Adyacente = destino;
@@ -158,12 +158,12 @@ void Grafo :: ListaAdyacencia(){
 	verticeAux = this->primero;
 	while (verticeAux != NULL){
 		std::cout<<verticeAux->parada->verNombre() <<"-->";
-		aristaAux = verticeAux->adyacente;
+		aristaAux = verticeAux->obtenerAristaAdyacente();
 		while(aristaAux != NULL) {
 			std::cout<<aristaAux->Adyacente->parada->verNombre() <<"-->";
-			aristaAux = aristaAux->siguiente;
+			aristaAux = aristaAux->obtenerAristaSig();
 		}
-		verticeAux = verticeAux->siguiente;
+		verticeAux = verticeAux->obtenerVerticeSig();
 		std::cout<<std::endl;
 	}
 }

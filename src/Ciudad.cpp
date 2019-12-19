@@ -49,12 +49,6 @@ Ciudad::Ciudad(){
 
 }
 
-void Ciudad::verRecorridoConCombinacion(Coordenadas i , Coordenadas j){
-
-
-
-};
-
 
 /*post: tendria que imprimir una lista con las bocas de subte y a la derecha sus adyacentes;*/
 void Ciudad::verRedSubte(){

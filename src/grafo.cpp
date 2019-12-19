@@ -33,29 +33,6 @@ Vertice *Grafo::getVertice(Estacion *parada){
 	return iterar;
 }
 
-
-void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
-
-	Arista * aristaNueva = new Arista;
-	aristaNueva->distancia = distancia;
-	aristaNueva->siguiente = NULL;
-	aristaNueva->Adyacente = NULL;
-
-	Arista * aux;
-
-	aux = origen->adyacente;
-	if(aux == NULL){
-		origen->adyacente = aristaNueva;
-		aristaNueva->Adyacente = destino;
-	}
-	else {
-		while (aux->siguiente != NULL){
-			aux = aux->siguiente;
-		}
-		aux->siguiente = aristaNueva;
-		aristaNueva->Adyacente = destino;
-	}
-}
 void Grafo::insertarVertice(Estacion *parada){
 	Vertice *nuevo = new Vertice;
 	nuevo->siguiente = NULL;
@@ -70,7 +47,15 @@ void Grafo::insertarVertice(Estacion *parada){
 		while(aux->siguiente != NULL){
 			aux = aux->siguiente;
 		}
-		aux->siguiente = nuevo;
+
+		if(nuevo->parada->verUbicacion().valida()){
+			aux->siguiente = nuevo;
+
+		}
+		else{
+			std::cout<<"Un vertice incorrecto"<<std::endl;
+
+		}
 	}
 	this->tamanio++;
 }
@@ -87,53 +72,98 @@ void Grafo::cargarVertices(Lista<std::string>*registros, std::string tipoTranspo
 
 	while(registros->avanzarCursor()) {
 		std::string infoEstacion = registros->obtenerCursor();
-		std::cout<<infoEstacion<<std::endl;
+		//std::cout<<tipoTransporte<<std::endl;
+
 		Estacion* nuevaEstacion = new Estacion (infoEstacion ,tipoTransporte);
+		/*std::cout<<nuevaEstacion->verUbicacionLatitud()<<nuevaEstacion->verUbicacionLongitud()
+				<<nuevaEstacion->verNombre()<<nuevaEstacion->verLinea()<<std::endl;*/
 		insertarVertice(nuevaEstacion);
+	}
+}
+void Grafo::verVertices(){
+	Vertice *auxiliar=this->primero;
+	while(auxiliar!=NULL){
+		Estacion *nuevaEstacion=auxiliar->parada;
+		std::cout<<nuevaEstacion->verUbicacionLatitud()<<" | "<<nuevaEstacion->verUbicacionLongitud()
+							<<" | "<<nuevaEstacion->verNombre()<<" | "<<nuevaEstacion->verLinea()<<std::endl;
+		auxiliar=auxiliar->siguiente;
 	}
 }
 /*llamar solo cuando se tienen todos los vertices en el grafo*/
 void Grafo::cargarAristas(){
 	Vertice* iterando=this->primero;
-	Vertice* posibleAdyacente=this->primero;
+
 	/*toma un vertice y recorre hasta el final buscando adyacencias por distancia*/
 	while(iterando!=NULL){
+		Vertice* posibleAdyacente=this->primero;
 		Coordenadas ubicacionIterada=iterando->parada->verUbicacion();
 		/*toma un vertice y verifica si esta cerca del anterior, si lo esta inserta
 		 * la arista correspondiente*/
 		while(posibleAdyacente!=NULL){
 			Coordenadas ubicacionadyacentePosible=posibleAdyacente->parada->verUbicacion();
 			ui distancia=ubicacionadyacentePosible.distanciaMetros(ubicacionIterada);
-			if (distancia<500){
-				this->insertarArista(iterando, posibleAdyacente, distancia);
+			if(iterando->parada->verLinea()==posibleAdyacente->parada->verLinea()&&
+					iterando!=posibleAdyacente){
+				if(distancia<=1000){
+					this->insertarArista(iterando, posibleAdyacente, distancia);
+				}
 			}
+			else{
+				if (distancia<500&&iterando!=posibleAdyacente){
+					this->insertarArista(iterando, posibleAdyacente, distancia);
+				}
+			}
+
 			posibleAdyacente=posibleAdyacente->siguiente;
 
 		}
 		iterando=iterando->siguiente;
 	}
-
 }
+
+
+void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
+	Arista * aristaNueva = new Arista;
+	aristaNueva->distancia = distancia;
+	aristaNueva->siguiente = NULL;
+	aristaNueva->Adyacente = destino;
+	Arista * adyacente;
+	adyacente = origen->adyacente;
+	if(adyacente == NULL){
+		origen->adyacente = aristaNueva;
+		//aristaNueva->Adyacente = destino;
+	}
+	else {
+		while (adyacente->siguiente != NULL){
+			adyacente = adyacente->siguiente;
+		}
+		adyacente = aristaNueva;
+		//aristaNueva->Adyacente = destino;
+	}
+}
+
+
+
 /*sirve para imprimir el grafo graficamente como una lista de adyacencia*/
 void Grafo :: ListaAdyacencia(){
 
 	Vertice *verticeAux;
 	Arista *aristaAux;
 
-	verticeAux = primero;
+	verticeAux = this->primero;
 	while (verticeAux != NULL){
-		cout<<verticeAux->parada->verNombre() <<"-->";
+		std::cout<<verticeAux->parada->verNombre() <<"-->";
 		aristaAux = verticeAux->adyacente;
 		while(aristaAux != NULL) {
 			cout<<aristaAux->Adyacente->parada->verNombre() <<"-->";
 			aristaAux = aristaAux->siguiente;
 		}
 		verticeAux = verticeAux->siguiente;
-		cout<<endl;
+		std::cout<<endl;
 	}
 }
 
-
+/*metodo no revisado ni prbado con Estacion*/
 void Grafo :: EliminarArista(Vertice *origen, Vertice *destino){
 
 	int bandera = 0;

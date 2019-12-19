@@ -19,6 +19,10 @@ class Vertice{
 	string nombre;
 	Estacion* parada;
 	friend class Grafo;
+	bool operator !=(Vertice* aComparar){
+		return (this->parada!=aComparar->parada);
+	}
+
 };
 
 
@@ -48,7 +52,7 @@ class Grafo {
 		void cargarAristas();
 		void insertarArista (Vertice *origen, Vertice *destino, ui distancia);
 		/*de aca abajo metodos no probados*/
-
+		void verVertices();
 		void ListaAdyacencia();
 		void EliminarArista(Vertice *origen, Vertice *destino);
 		void EliminarVertice(Vertice *vertice);

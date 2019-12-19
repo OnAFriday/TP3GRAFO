@@ -29,16 +29,20 @@ Ciudad::Ciudad(){
 	colectivos.leerArchivo(registrosEstacionesColectivo);
 	 */
 	this->subtes->cargarVertices(&registrosBocasSubte, "subte");
+	//std::cout<<"Cargo la lista de vertices "<<std::endl;
+	//this->subtes->verVertices();
 	this->subtes->cargarAristas();
+	//std::cout<<"Cargaron las adyacencias "<<std::endl;
+/*
 	this->estacionesFerrocarril->cargarVertices(&registrosEstacionesTren, "ferrocarril");
 	this->estacionesFerrocarril->cargarAristas();
-
+*//*
 	this->transportes->cargarVertices(&registrosBocasSubte, "subte");
 	this->transportes->cargarVertices(&registrosEstacionesTren,"ferrocarril");
 	std::cout<<"Cargo la lista de vertices "<<std::endl;
 	this->transportes->cargarAristas();
 	std::cout<<"Cargaron las adyacencias "<<std::endl;
-
+*/
 
 
 }

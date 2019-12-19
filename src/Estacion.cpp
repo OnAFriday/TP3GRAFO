@@ -9,6 +9,7 @@
 #include "Coordenadas.h"
 
 Estacion::Estacion(std::string informacionEstacion, std::string tipoTransporte){
+	this->ubicacion=NULL;
 
 	if(tipoTransporte == "ferrocarril"){
 		this->leerInformacionFerrocarril(informacionEstacion);
@@ -25,7 +26,6 @@ Estacion::Estacion(std::string informacionEstacion, std::string tipoTransporte){
 		this->tipoTransporte=tipoTransporte;
 
 	}
-	this->ubicacion=NULL;
 }
 
 void Estacion::leerInformacionSubte(std::string informacion){

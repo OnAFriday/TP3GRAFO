@@ -42,6 +42,7 @@ class Vertice{
 	Arista *adyacente;
 	Estacion* parada;
 	friend class Grafo;
+	ui index;
 
 	public:
 

@@ -20,7 +20,7 @@ class Grafo {
 		bool estaVacio();
 		int verCantidadVertices();
 		Vertice *getVertice(Estacion *parada);
-		void insertarVertice(Estacion *parada);
+		void insertarVertice(Estacion *parada, ui index);
 		void cargarVertices(Lista<std::string>*estaciones, std::string tipoTransporte);
 		void cargarAristas();
 		void insertarArista (Vertice *origen, Vertice *destino, ui distancia);
@@ -34,6 +34,17 @@ class Grafo {
 		void EliminarArista(Vertice *origen, Vertice *destino);
 		void EliminarVertice(Vertice *vertice);
 		~Grafo();
+
+		int ** cargarMatriz() {
+			int matriz [this->tamanio][this->tamanio];
+			Vertice * nodo = this->primero;
+
+			for(ui i=0; i<this->tamanio; i++){
+				for(ui j=0; j<this->tamanio; j++){
+					
+				}
+			}
+		}
 
 };
 

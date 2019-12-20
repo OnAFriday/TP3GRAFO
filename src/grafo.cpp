@@ -176,7 +176,7 @@ void Grafo :: ListaAdyacencia(){
 
 	verticeAux = this->primero;
 	while (verticeAux != NULL){
-		std::cout<<verticeAux->parada->verNombre()<<" | "<<verticeAux->obtenerMarca() <<"-->";
+		std::cout<<verticeAux->parada->verNombre()<<" la marca es "<<verticeAux->obtenerMarca() <<"-->";
 		aristaAux = verticeAux->obtenerAristaAdyacente();
 		while(aristaAux != NULL) {
 			std::cout<<aristaAux->Adyacente->parada->verNombre() <<"-->";

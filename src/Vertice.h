@@ -26,8 +26,14 @@ class Arista {
 	Vertice* obtenerVerticeDestino(){
 		return this->Adyacente;
 	}
+	void agregarVerticeDestino(Vertice* nuevoDestino){
+		this->Adyacente=nuevoDestino;
+	}
 	Arista* obtenerAristaSig(){
 		return this->siguiente;
+	}
+	void cambiarAristaSig(Arista *nuevoSiguiente){
+		this->siguiente=nuevoSiguiente;
 	}
 	ui obtenerDistancia(){
 		return this->distancia;
@@ -51,6 +57,15 @@ class Vertice{
 
 	Arista* obtenerAristaAdyacente(){
 		return this->adyacente;
+	}
+	void cambiarUltimaArista(Arista* aristaNueva){
+		Arista *adyacenteAOrigenAux=this->adyacente;
+		while (adyacenteAOrigenAux != NULL){
+						/*obtiene la sig arista adyacente de origen, es decir cada vertice tiene una lista de arista que lo llevan a destino
+						 * cuando llegue a una arista null guarda la nueva arista*/
+						adyacenteAOrigenAux = adyacenteAOrigenAux->obtenerAristaSig();
+		}
+		adyacenteAOrigenAux=aristaNueva;
 	}
 	Vertice* obtenerVerticeSig(){
 		return this->siguiente;

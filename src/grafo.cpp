@@ -147,19 +147,13 @@ void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
 		aristaNueva->distancia = distancia;
 		aristaNueva->siguiente = NULL;
 		aristaNueva->Adyacente = destino;
-		Arista * adyacente;
-		adyacente = origen->adyacente;
-		if(adyacente == NULL){
-			origen->adyacente = aristaNueva;
-			//aristaNueva->Adyacente = destino;
+		Arista * adyacenteAOrigenAux;
+		adyacenteAOrigenAux = origen->obtenerAristaAdyacente();
+		if(adyacenteAOrigenAux == NULL){
+			origen->adyacente->cambiarAristaSig(aristaNueva);
 		}
 		else {
-			while (adyacente != NULL){
-
-				adyacente = adyacente->obtenerAristaSig();
-			}
-			adyacente = aristaNueva;
-			//aristaNueva->Adyacente = destino;
+			origen->cambiarUltimaArista(aristaNueva);
 		}
 
 	}

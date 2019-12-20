@@ -176,8 +176,7 @@ public:
 				 }else{
 					 std::cout<<origen->obtenerDato()->verNombre()<<"---"<<
 							 predecesor->obtenerDato()
-					 ->verNombre()<<
-					 "---"<<"m "<< "---"<< destino->obtenerDato()->verNombre()<<" |"<<dist[i]<<"m"<<std::endl;
+					 ->verNombre()<< "---"<< destino->obtenerDato()->verNombre()<<" |"<<dist[i]<<"m"<<std::endl;
 				 }
 			 }
 		 }

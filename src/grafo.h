@@ -18,6 +18,16 @@ class Grafo
 	int **matriz;
 	ui index;
 	long int infinito = 9999999;
+private:
+	void borrarMatriz(){
+		/*
+		for (ui i = 0; i < this->tamanio; i++) {
+		        delete [] this->matriz[i];
+		}
+		   delete [] matriz;
+	*/
+		/*comenatrio para commit*/
+	}
 
 public:
 	Grafo();
@@ -68,6 +78,7 @@ public:
 				this->matriz[i][j] = infinito;
 			}
 		}
+
 		Vertice *nodo = this->primero;
 		while (nodo != NULL){
 			ui indice = nodo->obtenerMarca();
@@ -83,9 +94,14 @@ public:
 			nodo = nodo->obtenerVerticeSig();
 		}
 
+
+
 		Vertice* lasHeras=this->obtenerVertice(3);
 		//Vertice* auxiliar=this->obtenerVertice(35);
 		this->dijkstra(lasHeras);
+
+		this->borrarMatriz();
+
 	}
 
 	//metodo auxiliar para encontrar el vertice con la minima distancia

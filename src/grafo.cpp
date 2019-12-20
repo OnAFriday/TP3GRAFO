@@ -151,8 +151,10 @@ void Grafo :: ListaAdyacencia(){
 
 	Vertice *verticeAux;
 	//Arista *aristaAux;
+
 	std::list<Arista*>*aristasVertice;
 	verticeAux = this->primero;
+
 	while (verticeAux != NULL){
 		std::cout<<verticeAux->parada->verNombre()<<"|"<<verticeAux->obtenerMarca()<<"|" <<"-->";
 
@@ -169,6 +171,26 @@ void Grafo :: ListaAdyacencia(){
  		verticeAux = verticeAux->obtenerVerticeSig();
 
 	}
+	/*
+	Lista<Arista*>*aristas;
+	Vertice *verticeAux;
+
+	verticeAux = this->primero;
+
+	while (verticeAux != NULL){
+		aristas=verticeAux->obtenerAristas();
+		aristas->iniciarCursor();
+		while(aristas->avanzarCursor()){
+			std::cout<<aristas->obtenerCursor()->Adyacente->parada->verNombre() <<"-->";
+
+
+		}
+        std::cout << std::endl;
+
+		verticeAux = verticeAux->obtenerVerticeSig();
+	}*/
+	/*comenatrio para commit*/
+
 }
 
 

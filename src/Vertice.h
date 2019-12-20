@@ -9,7 +9,7 @@
 #define SRC_VERTICE_H_
 #include "Estacion.h"
 #include <list>
-
+#include "Lista.h"
 class Vertice;
 class Arista {
 	typedef unsigned int ui;
@@ -48,6 +48,7 @@ class Vertice{
 	Estacion* parada;
 	friend class Grafo;
 	std::list<Arista*>*aristas;
+	//Lista<Arista*>*aristas;
 	ui index;
 
 	public:
@@ -56,10 +57,28 @@ class Vertice{
 		this->adyacente=NULL;
 		this->parada=NULL;
 		this->aristas= new std::list<Arista*>;
+		//this->aristas=new Lista<Arista*>;
 		this->index=0;
 	}
 	void agregarArista(Arista*nuevaArista){
 		std::list<Arista*> ::iterator i;
+/*
+		aristas->iniciarCursor();
+        bool existe=false;
+
+		while(aristas->avanzarCursor()&&!existe){
+			existe=aristas->obtenerCursor()->obtenerVerticeDestino()->obtenerDato()->verNombre()==nuevaArista->
+            		obtenerVerticeDestino()->obtenerDato()->verNombre();
+		}
+		if(!existe){
+			this->aristas->agregar(nuevaArista);
+
+		}else{
+			delete nuevaArista;
+
+		}*/
+
+		//		this->aristas->agregar(nuevaArista);
 
          Arista* tempArista;
          bool existe=false;
@@ -71,6 +90,9 @@ class Vertice{
          if(!existe){
      		this->aristas->push_back(nuevaArista);
 
+         }
+         else{
+        	 delete nuevaArista;
          }
 	}
 	std::list<Arista*>*obtenerAristas(){
@@ -93,15 +115,15 @@ class Vertice{
 	}
 	~Vertice(){
 		std::list<Arista*> ::iterator i;
-        Arista* tempArista;
-
-         while(!this->aristas->empty()){
+	    Arista* tempArista;
+        while(!this->aristas->empty()){
         	 tempArista= aristas->front();
         	 aristas->pop_front();
         	 delete tempArista;
-         }
-         delete this->aristas;
-		delete this->parada;
+        }
+        delete this->aristas;
+        delete this->parada;
+		/*comenatrio para commit*/
 
 	}
 };

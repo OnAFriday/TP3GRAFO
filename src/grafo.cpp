@@ -65,37 +65,6 @@ void Grafo::verVertices(){
 		auxiliar=auxiliar->siguiente;
 	}
 }
-/*llamar solo cuando se tienen todos los vertices en el grafo*/
-/*no usar este metodo*/
-void Grafo::cargarAristas(){
-	Vertice* iterando=this->primero;
-
-	/*toma un vertice y recorre hasta el final buscando adyacencias por distancia*/
-	while(iterando!=NULL){
-		Vertice* posibleAdyacente=this->primero;
-		Coordenadas ubicacionIterada=iterando->parada->verUbicacion();
-		/*toma un vertice y verifica si esta cerca del anterior, si lo esta inserta
-		 * la arista correspondiente*/
-		while(posibleAdyacente!=NULL){
-			Coordenadas ubicacionadyacentePosible=posibleAdyacente->parada->verUbicacion();
-			ui distancia=ubicacionadyacentePosible.distanciaMetros(ubicacionIterada);
-			if(iterando->parada->verLinea()==posibleAdyacente->parada->verLinea()&&
-					iterando!=posibleAdyacente){
-				this->insertarArista(iterando, posibleAdyacente, distancia);
-
-			}
-			else{
-				if (distancia<500&&iterando!=posibleAdyacente){
-					this->insertarArista(iterando, posibleAdyacente, distancia);
-				}
-			}
-
-			posibleAdyacente=posibleAdyacente->siguiente;
-
-		}
-		iterando=iterando->siguiente;
-	}
-}
 void Grafo::insertarVertice(Estacion *parada, ui index){
 	Vertice *nuevo = new Vertice;
 	nuevo->siguiente = NULL;
@@ -110,13 +79,15 @@ void Grafo::insertarVertice(Estacion *parada, ui index){
 
 		ultimo->siguiente=nuevo;
 		ultimo=nuevo;
-
+/*agrega arista si tiene conexion con algun vertice ya cargado*/
 		Vertice* posibleAdyacente=this->primero;
 		Coordenadas ubicacionAgregada=nuevo->parada->verUbicacion();
+		/*mientras queden vertices por comparar*/
 		while(posibleAdyacente!=NULL){
 			Coordenadas ubicacionAdyacentePosible=posibleAdyacente->parada->verUbicacion();
 			if(posibleAdyacente->parada->verLinea()==nuevo->parada->verLinea()&&
 					nuevo!=posibleAdyacente){
+				/*si pertencen al mismo transporte y recorrido pero no son la misma parada*/
 				ui distancia=ubicacionAdyacentePosible.distanciaMetros(ubicacionAgregada);
 
 				this->insertarArista(posibleAdyacente, nuevo, distancia);
@@ -130,7 +101,7 @@ void Grafo::insertarVertice(Estacion *parada, ui index){
 				}
 			}
 
-			posibleAdyacente=posibleAdyacente->siguiente;
+			posibleAdyacente=posibleAdyacente->obtenerVerticeSig();
 
 		}
 
@@ -142,6 +113,7 @@ void Grafo::insertarVertice(Estacion *parada, ui index){
 
 
 void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
+	/*creo arista si no son la misma parada y/o otra boca de la misma estacion*/
 	if(origen!=destino&&origen->obtenerDato()->verNombre()!=destino->obtenerDato()->verNombre()){
 		Arista  *aristaNueva= new Arista;
 		aristaNueva->distancia = distancia;
@@ -150,12 +122,12 @@ void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
 		Arista * adyacenteAOrigenAux;
 		adyacenteAOrigenAux = origen->obtenerAristaAdyacente();
 		if(adyacenteAOrigenAux == NULL){
-			origen->adyacente->cambiarAristaSig(aristaNueva);
+			origen->obtenerAristaAdyacente()->cambiarAristaSig(aristaNueva);
 		}
 		else {
 			origen->cambiarUltimaArista(aristaNueva);
 		}
-/*comentario para hacer commit*/
+		/*comentario para hacer commit*/
 	}
 
 }

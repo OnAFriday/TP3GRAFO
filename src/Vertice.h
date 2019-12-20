@@ -62,9 +62,9 @@ class Vertice{
 	void cambiarUltimaArista(Arista* aristaNueva){
 		Arista *adyacenteAOrigenAux=this->adyacente;
 		while (adyacenteAOrigenAux != NULL){
-						/*obtiene la sig arista adyacente de origen, es decir cada vertice tiene una lista de arista que lo llevan a destino
-						 * cuando llegue a una arista null guarda la nueva arista*/
-						adyacenteAOrigenAux = adyacenteAOrigenAux->obtenerAristaSig();
+			/*obtiene la sig arista adyacente de origen, es decir cada vertice tiene una lista de arista que lo llevan a destino
+			 * cuando llegue a una arista null guarda la nueva arista*/
+			adyacenteAOrigenAux = adyacenteAOrigenAux->obtenerAristaSig();
 		}
 		adyacenteAOrigenAux=aristaNueva;
 	}

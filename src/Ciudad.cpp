@@ -16,11 +16,11 @@ Ciudad::Ciudad(){
 	this->subtes=new Grafo;
 	this->transportes=new Grafo;
 
-	Archivo trenes(ARCHIVO_TRENES);
+	Archivo trenes("../estaciones-de-ferrocarril.csv");
 	Lista<std::string> registrosEstacionesTren;
 	trenes.leerArchivo(registrosEstacionesTren);
 
-	Archivo subtes(ARCHIVO_SUBTES);
+	Archivo subtes("../bocas-de-subte.csv");
 	Lista<std::string> registrosBocasSubte;
 	subtes.leerArchivo(registrosBocasSubte);
 	/*

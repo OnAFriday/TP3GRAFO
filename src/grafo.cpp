@@ -4,6 +4,8 @@ Grafo::Grafo(){
 	primero = NULL;
 	this->tamanio=0;
 	ultimo=NULL;
+	this->matriz=NULL;
+	this->index=0;
 }
 
 bool Grafo :: estaVacio(){
@@ -42,7 +44,7 @@ void Grafo::cargarVertices(Lista<std::string>*registros, std::string tipoTranspo
 	 * siempre tiene su respectiva parte en otra calle con el mismo nombre pero en otro sentido de
 	 * la linea o simplemente ingreso desde otra calle. Todas quedan cargadas*/
 	registros->iniciarCursor();
-	ui index=0;
+
 
 	while(registros->avanzarCursor()) {
 		std::string infoEstacion = registros->obtenerCursor();
@@ -51,7 +53,7 @@ void Grafo::cargarVertices(Lista<std::string>*registros, std::string tipoTranspo
 
 		insertarVertice(nuevaEstacion, index);
 
-		index++;
+		this->index++;
 	}
 }
 void Grafo::verVertices(){
@@ -64,6 +66,7 @@ void Grafo::verVertices(){
 	}
 }
 /*llamar solo cuando se tienen todos los vertices en el grafo*/
+/*no usar este metodo*/
 void Grafo::cargarAristas(){
 	Vertice* iterando=this->primero;
 
@@ -173,7 +176,7 @@ void Grafo :: ListaAdyacencia(){
 
 	verticeAux = this->primero;
 	while (verticeAux != NULL){
-		std::cout<<verticeAux->parada->verNombre() <<"-->";
+		std::cout<<verticeAux->parada->verNombre()<<" | "<<verticeAux->obtenerMarca() <<"-->";
 		aristaAux = verticeAux->obtenerAristaAdyacente();
 		while(aristaAux != NULL) {
 			std::cout<<aristaAux->Adyacente->parada->verNombre() <<"-->";

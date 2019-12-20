@@ -15,6 +15,7 @@ class Grafo {
 	Vertice* ultimo;
 	ui tamanio;
 	int ** matriz;
+	ui index;
 
 	public:
 		Grafo();
@@ -39,7 +40,7 @@ class Grafo {
 			long int infinito = 9999999;
 			this->matriz = new int*[this->tamanio];
 			
-			for (int i = 0; i < this->tamanio; i++) {
+			for (ui i = 0; i < this->tamanio; i++) {
     			this->matriz[i] = new int[this->tamanio];
 			}
 
@@ -61,7 +62,11 @@ class Grafo {
 				nodo=nodo->obtenerVerticeSig();
 			}
 
+
 		}
+
+
+
 
 };
 

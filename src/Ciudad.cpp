@@ -40,7 +40,7 @@ Ciudad::Ciudad(){
 	this->transportes->cargarVertices(&registrosBocasSubte, "subte");
 	this->transportes->cargarVertices(&registrosEstacionesTren,"ferrocarril");
 	//this->transportes->cargarVertices(&registrosEstacionesColectivo,"colectivo");
-
+	this->transportes->cargarMatriz();
 	//std::cout<<"Cargo la lista de vertices "<<std::endl;
 	//this->transportes->cargarAristas();
 	//std::cout<<"Cargaron las adyacencias "<<std::endl;

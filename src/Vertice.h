@@ -8,6 +8,8 @@
 #ifndef SRC_VERTICE_H_
 #define SRC_VERTICE_H_
 #include "Estacion.h"
+#include <list>
+
 class Vertice;
 class Arista {
 	typedef unsigned int ui;
@@ -45,10 +47,35 @@ class Vertice{
 	Arista *adyacente;
 	Estacion* parada;
 	friend class Grafo;
+	std::list<Arista*>*aristas;
 	ui index;
 
 	public:
+	Vertice(){
+		this->siguiente=NULL;
+		this->adyacente=NULL;
+		this->parada=NULL;
+		this->aristas= new std::list<Arista*>;
+		this->index=0;
+	}
+	void agregarArista(Arista*nuevaArista){
+		std::list<Arista*> ::iterator i;
 
+         Arista* tempArista;
+         bool existe=false;
+         for(i = aristas->begin(); i != aristas->end(); i++) {
+            tempArista = *i;
+            existe=tempArista->obtenerVerticeDestino()->obtenerDato()->verNombre()==nuevaArista->
+            		obtenerVerticeDestino()->obtenerDato()->verNombre();
+         }
+         if(!existe){
+     		this->aristas->push_back(nuevaArista);
+
+         }
+	}
+	std::list<Arista*>*obtenerAristas(){
+		return this->aristas;
+	}
 	Arista* obtenerAristaAdyacente(){
 		return this->adyacente;
 	}
@@ -65,14 +92,15 @@ class Vertice{
 		return this->index;
 	}
 	~Vertice(){
+		std::list<Arista*> ::iterator i;
+        Arista* tempArista;
 
-		while(adyacente != NULL) {
-			Arista *aristaAux=adyacente;
-			adyacente=aristaAux->obtenerAristaSig();
-
-			delete aristaAux;
-		}
-
+         while(!this->aristas->empty()){
+        	 tempArista= aristas->front();
+        	 aristas->pop_front();
+        	 delete tempArista;
+         }
+         delete this->aristas;
 		delete this->parada;
 
 	}

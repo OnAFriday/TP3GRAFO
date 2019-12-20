@@ -147,11 +147,12 @@ void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
 		aristaNueva->distancia = distancia;
 		aristaNueva->siguiente = NULL;
 		aristaNueva->Adyacente = destino;
-		Arista * adyacente;
-		adyacente = origen->adyacente;
+		//Arista * adyacente;
+		//adyacente = origen->adyacente;
+		origen->agregarArista(aristaNueva);
+		/*
 		if(adyacente == NULL){
 			origen->adyacente = aristaNueva;
-			//aristaNueva->Adyacente = destino;
 		}
 		else {
 			while (adyacente != NULL){
@@ -159,8 +160,7 @@ void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
 				adyacente = adyacente->obtenerAristaSig();
 			}
 			adyacente = aristaNueva;
-			//aristaNueva->Adyacente = destino;
-		}
+		}*/
 
 	}
 
@@ -172,8 +172,30 @@ void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
 void Grafo :: ListaAdyacencia(){
 
 	Vertice *verticeAux;
-	Arista *aristaAux;
+	//Arista *aristaAux;
+	std::list<Arista*>*aristasVertice;
+	verticeAux = this->primero;
+	while (verticeAux != NULL){
+		std::cout<<verticeAux->parada->verNombre()<<"|"<<verticeAux->obtenerMarca()<<"|" <<"-->";
 
+		aristasVertice=verticeAux->obtenerAristas();
+		std::list<Arista*> ::iterator i;
+
+         Arista* tempArista;
+
+         for(i = aristasVertice->begin(); i != aristasVertice->end(); i++) {
+            tempArista = *i;
+			std::cout<<tempArista->Adyacente->parada->verNombre() <<"-->";
+         }
+        std::cout << std::endl;
+ 		verticeAux = verticeAux->obtenerVerticeSig();
+
+	}
+
+
+
+
+	/*
 	verticeAux = this->primero;
 	while (verticeAux != NULL){
 		std::cout<<verticeAux->parada->verNombre()<<"|"<<verticeAux->obtenerMarca()<<"|" <<"-->";
@@ -184,8 +206,9 @@ void Grafo :: ListaAdyacencia(){
 		}
 		verticeAux = verticeAux->obtenerVerticeSig();
 		std::cout<<std::endl;
-	}
+	}*/
 }
+
 
 /*metodo no revisado ni prbado con Estacion*/
 void Grafo :: EliminarArista(Vertice *origen, Vertice *destino){

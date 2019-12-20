@@ -68,7 +68,7 @@ public:
 				this->matriz[i][j] = infinito;
 			}
 		}
-
+/*
 		Vertice *nodo = this->primero;
 		while (nodo != NULL)
 		{
@@ -82,17 +82,37 @@ public:
 				aristaAdyacente = aristaAdyacente->obtenerAristaSig();
 			}
 			nodo = nodo->obtenerVerticeSig();
+		}*/
+		Vertice *nodo = this->primero;
+		while (nodo != NULL){
+			ui indice = nodo->obtenerMarca();
+			std::list<Arista*>*aristasVertice=nodo->obtenerAristas();
+			std::list<Arista*> ::iterator i;
+			Arista* tempArista;
+
+         for(i = aristasVertice->begin(); i != aristasVertice->end(); i++) {
+	         tempArista = *i;
+        	 ui indice2 = tempArista->obtenerVerticeDestino()->obtenerMarca();
+			this->matriz[indice][indice2] = tempArista->obtenerDistancia();
+			//std::cout<<tempArista->Adyacente->parada->verNombre() <<"-->";
+	        }
+			nodo = nodo->obtenerVerticeSig();
 		}
 
-		// for(ui i=0; i<this->tamanio; i++){
-		// 	for(ui j=0; j<this->tamanio; j++){
-		// 			std::cout<<this->matriz[i][j]<< " | ";
-		// 	}
-		// 	std::cout<<std::endl;
-		// }
+
+
+
+
+
+		 for(ui i=0; i<this->tamanio; i++){
+		 	for(ui j=0; j<this->tamanio; j++){
+		 			std::cout<<this->matriz[i][j]<< " | ";
+		 	}
+		 	std::cout<<std::endl;
+		 }
 		//std::cout << this->matriz[44][45] << " | ";
-		Vertice* lasHeras=this->obtenerVertice(3);
-		this->dijkstra(lasHeras);
+		//Vertice* lasHeras=this->obtenerVertice(3);
+		//this->dijkstra(lasHeras);
 	}
 
 	//metodo auxiliar para encontrar el vertice con la minima distancia
@@ -137,6 +157,7 @@ public:
 			//actualizo el arreglo con las distancias si la nueva distancia es menor que la anterior
 				 if (!sptSet[v] && this->matriz[u][v] && dist[u] != infinito
 						 && dist[u] + this->matriz[u][v] < dist[v]){
+
 					 dist[v] = dist[u] + this->matriz[u][v];
 				 }
 			 }
@@ -153,6 +174,7 @@ public:
 			 }
 		 }
   
+
 	}
 };
 

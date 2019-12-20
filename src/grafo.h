@@ -88,6 +88,8 @@ public:
 
 		return min_index;
 	}
+	/*comentario para hacer commit*/
+
 /*
 	void dijkstra(Vertice *origen)
 	{

@@ -155,7 +155,7 @@ void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
 		else {
 			origen->cambiarUltimaArista(aristaNueva);
 		}
-
+/*comentario para hacer commit*/
 	}
 
 }

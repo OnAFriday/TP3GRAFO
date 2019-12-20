@@ -53,7 +53,8 @@ class Vertice{
 	friend class Grafo;
 	ui index;
 
-	public:
+	public:/*comentario para hacer commit*/
+
 
 	Arista* obtenerAristaAdyacente(){
 		return this->adyacente;

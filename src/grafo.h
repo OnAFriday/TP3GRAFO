@@ -51,8 +51,9 @@ class Grafo {
 			}
 
 			Vertice * nodo = this->primero;
-			ui indice=nodo->obtenerMarca();
 			while(nodo!=NULL){
+				ui indice=nodo->obtenerMarca();
+
 				Arista* aristaAdyacente=nodo->obtenerAristaAdyacente();
 				while(aristaAdyacente!=NULL){
 					ui indice2=aristaAdyacente->obtenerVerticeDestino()->obtenerMarca();
@@ -62,7 +63,12 @@ class Grafo {
 				nodo=nodo->obtenerVerticeSig();
 			}
 
-
+			for(ui i=0; i<this->tamanio; i++){
+				for(ui j=0; j<this->tamanio; j++){
+						std::cout<<this->matriz[i][j]<< " | ";
+				}
+				std::cout<<std::endl;
+			}
 		}
 
 

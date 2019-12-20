@@ -56,6 +56,7 @@ public:
 	{
 		this->matriz = new int *[this->tamanio];
 
+		std::cout<<"le doy memoria a la matriz"<<std::endl;
 		for (ui i = 0; i < this->tamanio; i++)
 		{
 			this->matriz[i] = new int[this->tamanio];
@@ -68,6 +69,8 @@ public:
 				this->matriz[i][j] = infinito;
 			}
 		}
+
+		std::cout<<"entro a cargar la matriz"<<std::endl;
 		Vertice *nodo = this->primero;
 		while (nodo != NULL){
 			ui indice = nodo->obtenerMarca();

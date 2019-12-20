@@ -170,11 +170,15 @@ public:
 				 Vertice* destino=this->obtenerVertice(i);
 				 ui marcaPredecesor=predecesor[i];
 				 Vertice * predecesor=this->obtenerVertice(marcaPredecesor);
-				 std::cout<<origen->obtenerDato()->verNombre()<<" "<<predecesor->obtenerDato()
-						 ->verNombre()<<
-						 " "<<dist[i]<< " "<< destino->obtenerDato()->verNombre()<<std::endl;
-
-
+				 if(origen==predecesor){
+					 std::cout<<origen->obtenerDato()->verNombre()<< "---"<<
+							 destino->obtenerDato()->verNombre()<<" |"<<dist[i]<<"m"<<std::endl;
+				 }else{
+					 std::cout<<origen->obtenerDato()->verNombre()<<"---"<<
+							 predecesor->obtenerDato()
+					 ->verNombre()<<
+					 "---"<<"m "<< "---"<< destino->obtenerDato()->verNombre()<<" |"<<dist[i]<<"m"<<std::endl;
+				 }
 			 }
 		 }
   

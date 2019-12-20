@@ -92,14 +92,15 @@ class Vertice{
 		return this->index;
 	}
 	~Vertice(){
+		std::list<Arista*> ::iterator i;
+        Arista* tempArista;
 
-		while(adyacente != NULL) {
-			Arista *aristaAux=adyacente;
-			adyacente=aristaAux->obtenerAristaSig();
-
-			delete aristaAux;
-		}
-
+         while(!this->aristas->empty()){
+        	 tempArista= aristas->front();
+        	 aristas->pop_front();
+        	 delete tempArista;
+         }
+         delete this->aristas;
 		delete this->parada;
 
 	}

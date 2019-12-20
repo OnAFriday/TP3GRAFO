@@ -102,17 +102,17 @@ public:
 
 
 
-
+/*
 
 		 for(ui i=0; i<this->tamanio; i++){
 		 	for(ui j=0; j<this->tamanio; j++){
 		 			std::cout<<this->matriz[i][j]<< " | ";
 		 	}
 		 	std::cout<<std::endl;
-		 }
+		 }*/
 		//std::cout << this->matriz[44][45] << " | ";
-		//Vertice* lasHeras=this->obtenerVertice(3);
-		//this->dijkstra(lasHeras);
+		Vertice* lasHeras=this->obtenerVertice(3);
+		this->dijkstra(lasHeras);
 	}
 
 	//metodo auxiliar para encontrar el vertice con la minima distancia

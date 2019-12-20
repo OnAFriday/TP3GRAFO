@@ -68,21 +68,6 @@ public:
 				this->matriz[i][j] = infinito;
 			}
 		}
-/*
-		Vertice *nodo = this->primero;
-		while (nodo != NULL)
-		{
-			ui indice = nodo->obtenerMarca();
-
-			Arista *aristaAdyacente = nodo->obtenerAristaAdyacente();
-			while (aristaAdyacente != NULL)
-			{
-				ui indice2 = aristaAdyacente->obtenerVerticeDestino()->obtenerMarca();
-				this->matriz[indice][indice2] = aristaAdyacente->obtenerDistancia();
-				aristaAdyacente = aristaAdyacente->obtenerAristaSig();
-			}
-			nodo = nodo->obtenerVerticeSig();
-		}*/
 		Vertice *nodo = this->primero;
 		while (nodo != NULL){
 			ui indice = nodo->obtenerMarca();
@@ -94,24 +79,12 @@ public:
 	         tempArista = *i;
         	 ui indice2 = tempArista->obtenerVerticeDestino()->obtenerMarca();
 			this->matriz[indice][indice2] = tempArista->obtenerDistancia();
-			//std::cout<<tempArista->Adyacente->parada->verNombre() <<"-->";
 	        }
 			nodo = nodo->obtenerVerticeSig();
 		}
 
-
-
-
-/*
-
-		 for(ui i=0; i<this->tamanio; i++){
-		 	for(ui j=0; j<this->tamanio; j++){
-		 			std::cout<<this->matriz[i][j]<< " | ";
-		 	}
-		 	std::cout<<std::endl;
-		 }*/
-		//std::cout << this->matriz[44][45] << " | ";
 		Vertice* lasHeras=this->obtenerVertice(3);
+		//Vertice* auxiliar=this->obtenerVertice(35);
 		this->dijkstra(lasHeras);
 	}
 
@@ -127,8 +100,9 @@ public:
 		return min_index;
 	}
 
-	void dijkstra(Vertice *origen)
+	void dijkstra(Vertice *origen)//, Vertice* destino)
 	{
+
 		int predecesor[this->tamanio];
 		//arreglo donde va a estar la distancia desde origan a cada uno de los demás vertices del grafo
 		int dist[this->tamanio];
@@ -167,20 +141,19 @@ public:
 		 for (ui i=0;i<this->tamanio;i++){
 			 if(dist[i]!=infinito){
 				 //std::cout<<dist[i]<<std::endl;
-				 Vertice* destino=this->obtenerVertice(i);
-				 ui marcaPredecesor=predecesor[i];
-				 Vertice * predecesor=this->obtenerVertice(marcaPredecesor);
-				 if(origen==predecesor){
-					 std::cout<<origen->obtenerDato()->verNombre()<< "---"<<
-							 destino->obtenerDato()->verNombre()<<" |"<<dist[i]<<"m"<<std::endl;
-				 }else{
-					 std::cout<<origen->obtenerDato()->verNombre()<<"---"<<
-							 predecesor->obtenerDato()
-					 ->verNombre()<< "---"<< destino->obtenerDato()->verNombre()<<" |"<<dist[i]<<"m"<<std::endl;
-				 }
+				Vertice* destino=this->obtenerVertice(i);
+				ui marcaPredecesor=predecesor[i];
+				Vertice * predecesor=this->obtenerVertice(marcaPredecesor);
+				if(origen==predecesor){
+					std::cout<<origen->obtenerDato()->verNombre()<< "---"<<
+					destino->obtenerDato()->verNombre()<<" |"<<dist[i]<<"m"<<std::endl;
+				}else{
+					std::cout<<origen->obtenerDato()->verNombre()<<"---"<<
+					predecesor->obtenerDato()
+					->verNombre()<< "---"<< destino->obtenerDato()->verNombre()<<" |"<<dist[i]<<"m"<<std::endl;
+				}
 			 }
 		 }
-  
 
 	}
 };

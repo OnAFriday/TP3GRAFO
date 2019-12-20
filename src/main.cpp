@@ -11,8 +11,8 @@ int main(){
 	//recorridos.iniciarMenu();
 
 	Ciudad caba;
-	caba.verRedSubte();
-	caba.verRedTren();
+	//caba.verRedSubte();
+	//caba.verRedTren();
 	//caba.verRedTransporte();
 
 	return 0;

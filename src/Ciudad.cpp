@@ -23,11 +23,11 @@ Ciudad::Ciudad(){
 	Archivo subtes(ARCHIVO_SUBTES);
 	Lista<std::string> registrosBocasSubte;
 	subtes.leerArchivo(registrosBocasSubte);
-
+/*
 	Archivo colectivos(ARCHIVO_COLECTIVOS);
 	Lista<std::string> registrosEstacionesColectivo;
 	colectivos.leerArchivo(registrosEstacionesColectivo);
-
+*/
 	//this->subtes->cargarVertices(&registrosBocasSubte, "subte");
 	//std::cout<<"Cargo la lista de vertices "<<std::endl;
 	//this->subtes->verVertices();

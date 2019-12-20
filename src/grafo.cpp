@@ -129,13 +129,8 @@ void Grafo::insertarVertice(Estacion *parada, ui index){
 					this->insertarArista(posibleAdyacente, nuevo, distancia);
 				}
 			}
-
 			posibleAdyacente=posibleAdyacente->siguiente;
-
 		}
-
-
-
 	}
 	this->tamanio++;
 }
@@ -147,26 +142,9 @@ void Grafo :: insertarArista (Vertice *origen, Vertice *destino, ui distancia){
 		aristaNueva->distancia = distancia;
 		aristaNueva->siguiente = NULL;
 		aristaNueva->Adyacente = destino;
-		//Arista * adyacente;
-		//adyacente = origen->adyacente;
 		origen->agregarArista(aristaNueva);
-		/*
-		if(adyacente == NULL){
-			origen->adyacente = aristaNueva;
-		}
-		else {
-			while (adyacente != NULL){
-
-				adyacente = adyacente->obtenerAristaSig();
-			}
-			adyacente = aristaNueva;
-		}*/
-
 	}
-
 }
-
-
 
 /*sirve para imprimir el grafo graficamente como una lista de adyacencia*/
 void Grafo :: ListaAdyacencia(){
@@ -191,22 +169,6 @@ void Grafo :: ListaAdyacencia(){
  		verticeAux = verticeAux->obtenerVerticeSig();
 
 	}
-
-
-
-
-	/*
-	verticeAux = this->primero;
-	while (verticeAux != NULL){
-		std::cout<<verticeAux->parada->verNombre()<<"|"<<verticeAux->obtenerMarca()<<"|" <<"-->";
-		aristaAux = verticeAux->obtenerAristaAdyacente();
-		while(aristaAux != NULL) {
-			std::cout<<aristaAux->Adyacente->parada->verNombre() <<"-->";
-			aristaAux = aristaAux->obtenerAristaSig();
-		}
-		verticeAux = verticeAux->obtenerVerticeSig();
-		std::cout<<std::endl;
-	}*/
 }
 
 

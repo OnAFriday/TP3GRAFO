@@ -129,7 +129,7 @@ public:
 
 	void dijkstra(Vertice *origen)
 	{
-		std::vector<ui>marcasCamino;
+		int predecesor[this->tamanio];
 		//arreglo donde va a estar la distancia desde origan a cada uno de los demás vertices del grafo
 		int dist[this->tamanio];
 
@@ -147,9 +147,9 @@ public:
 		//eligo el vertice con la menor distancia entre los vertices no procesados
 			 int u = minDistance(dist, sptSet);
         /**/
-			 marcasCamino.push_back(u);
-        // marco tal vertice como procesado 
+        // marco tal vertice como procesado
 			 sptSet[u] = true;
+
   
 		//actualizo la distancia de los demas vertices desde el vertice elegido
 			 for (ui v = 0; v < this->tamanio; v++){
@@ -157,7 +157,8 @@ public:
 			//actualizo el arreglo con las distancias si la nueva distancia es menor que la anterior
 				 if (!sptSet[v] && this->matriz[u][v] && dist[u] != infinito
 						 && dist[u] + this->matriz[u][v] < dist[v]){
-
+					 /*cargo el predecesor*/
+					 predecesor[v]=u;
 					 dist[v] = dist[u] + this->matriz[u][v];
 				 }
 			 }
@@ -167,7 +168,10 @@ public:
 			 if(dist[i]!=infinito){
 				 //std::cout<<dist[i]<<std::endl;
 				 Vertice* destino=this->obtenerVertice(i);
-				 std::cout<<origen->obtenerDato()->verNombre()<<
+				 ui marcaPredecesor=predecesor[i];
+				 Vertice * predecesor=this->obtenerVertice(marcaPredecesor);
+				 std::cout<<origen->obtenerDato()->verNombre()<<" "<<predecesor->obtenerDato()
+						 ->verNombre()<<
 						 " "<<dist[i]<< " "<< destino->obtenerDato()->verNombre()<<std::endl;
 
 

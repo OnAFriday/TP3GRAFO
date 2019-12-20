@@ -104,7 +104,7 @@ public:
 		//distancia del origen a si mismo es igual a cero
 		dist[origen->obtenerMarca] = 0;
 
-		 for (int count = 0; count < this->tamanio - 1; count++) { 
+		for (int count = 0; count < this->tamanio - 1; count++) { 
 		//eligo el vertice con la menor distancia entre los vertices no procesados
         int u = minDistance(dist, sptSet); 
   
@@ -115,7 +115,7 @@ public:
         for (int v = 0; v < this->tamanio; v++) 
 
 			//actualizo el arreglo con las distancias si la nueva distancia es menor que la anterior
-            if (!sptSet[v] && this->matriz<[u][v] && dist[u] != infinito 
+            if (!sptSet[v] && this->matriz[u][v] && dist[u] != infinito 
                 && dist[u] + this->matriz[u][v] < dist[v]) 
                 dist[v] = dist[u] + this->matriz[u][v]; 
     } 

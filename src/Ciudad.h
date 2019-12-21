@@ -40,9 +40,7 @@ class Ciudad {
 		void verRedTren();
 		void verRedTransporte();
 
-		void verRecorridoConCombinacion(Coordenadas i , Coordenadas j){
-
-		};
+		void verRecorridoConCombinacion(Coordenadas origen, Coordenadas destino);
 		void verRecorridoDirecto(Coordenadas i , Coordenadas j){
 
 		}

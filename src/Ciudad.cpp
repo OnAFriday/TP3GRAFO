@@ -49,7 +49,12 @@ Ciudad::Ciudad(){
 
 
 }
+void Ciudad::verRecorridoConCombinacion(Coordenadas origen, Coordenadas destino){
+	Vertice *verticeOrigen=this->transportes->obtenerVertice(origen);
+	Vertice *verticeDestino=this->transportes->obtenerVertice(destino);
 
+	this->transportes->dijkstra(verticeOrigen, verticeDestino);
+}
 
 /*post: tendria que imprimir una lista con las bocas de subte y a la derecha sus adyacentes;*/
 void Ciudad::verRedSubte(){

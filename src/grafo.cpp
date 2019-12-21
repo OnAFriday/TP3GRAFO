@@ -338,7 +338,7 @@ int Grafo ::minDistance(int dist[], bool sptSet[])
 	return min_index;
 }
 
-void Grafo ::dijkstra(Vertice *origen) //, Vertice* destino)
+void Grafo ::dijkstra(Vertice *origen, Vertice* destino)
 {
 
 	int predecesor[this->tamanio];
@@ -379,7 +379,7 @@ void Grafo ::dijkstra(Vertice *origen) //, Vertice* destino)
 		}
 	}
 
-	imprimirRecorrido(dist, predecesor, origen);
+	imprimirRecorrido(dist, predecesor, origen, destino);
 
 	this->borrarMatriz();
 }

@@ -124,6 +124,8 @@ class Vertice{
         delete this->aristas;
         delete this->parada;
 		/*comenatrio para commit*/
+		/*comenatrio para commit*/
+
 
 	}
 };

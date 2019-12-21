@@ -50,6 +50,7 @@ public:
 	int minDistance(int dist[], bool sptSet[]);
 	void dijkstra(Vertice *origen);//, Vertice* destino)
 	void imprimirRecorrido(int * dist, int * predecesor, Vertice *origen);
+	void imprimirRecorrido(int *dist, int *predecesor, Vertice *origen, Vertice *destino);
 	
 	~Grafo();
 

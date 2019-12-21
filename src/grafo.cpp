@@ -364,6 +364,31 @@ void Grafo ::dijkstra(Vertice *origen) //, Vertice* destino)
 	this->borrarMatriz();
 }
 
+void Grafo ::imprimirRecorrido(int *dist, int *predecesor, Vertice *origen, Vertice *destino)
+{
+	/*imprimo d con origen y destino*/
+	for (ui i = 0; i < this->tamanio; i++)
+	{
+		if (dist[i] != infinito)
+		{
+			//std::cout<<dist[i]<<std::endl;
+			Vertice *destino = this->obtenerVertice(i);
+			ui marcaPredecesor = predecesor[i];
+			Vertice *predecesor = this->obtenerVertice(marcaPredecesor);
+			if (origen == predecesor&&origen->obtenerMarca()==destino->obtenerMarca())
+			{
+				std::cout << origen->obtenerDato()->verNombre() << "---" << destino->obtenerDato()->verNombre() << " |" << dist[i] << "m" << std::endl;
+			}
+			else
+			{	if(origen->obtenerMarca()==destino->obtenerMarca()){
+				std::cout << origen->obtenerDato()->verNombre() << "---" << predecesor->obtenerDato()->verNombre() << "---" << destino->obtenerDato()->verNombre() << " |" << dist[i] << "m" << std::endl;
+
+			}
+			}
+		}
+	}
+}
+
 void Grafo ::imprimirRecorrido(int *dist, int *predecesor, Vertice *origen)
 {
 	/*imprimo d con origen y destino*/

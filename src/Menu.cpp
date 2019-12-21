@@ -40,6 +40,9 @@ void Menu::iniciarMenu(){
 		Coordenadas origen(auxLongitudOrigen, auxLatitudOrigen);
 		Coordenadas destino(auxLongitudDestino, auxLatitudDestino);
 
+		this->miCiudad->verRecorridoConCombinacion(origen,destino);
+
+
 		cout <<"PARA BUSCAR OTRO RECORRIDO INGRESE 'S', DE LO CONTRARIO INGRESE 'N' "<<endl;
 		cin>>opcionMenu;
 

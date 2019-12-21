@@ -454,5 +454,5 @@ Grafo ::~Grafo()
 		this->primero = aBorrar->siguiente;
 		delete (aBorrar);
 	}
-	delete[] this->matriz;
+//this->borrarMatriz();
 }

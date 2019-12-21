@@ -20,12 +20,12 @@ class Grafo
 	long int infinito = 9999999;
 private:
 	void borrarMatriz(){
-		/*
+
 		for (ui i = 0; i < this->tamanio; i++) {
 		        delete [] this->matriz[i];
 		}
 		   delete [] matriz;
-	*/
+
 		/*comenatrio para commit*/
 	}
 

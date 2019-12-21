@@ -39,6 +39,26 @@ Vertice *Grafo ::obtenerVertice(ui marca)
 	return iterar;
 }
 
+Vertice *Grafo ::obtenerVertice(Coordenadas posicion)
+{
+	Vertice *iterar = NULL;
+	bool encontrado = false;
+	iterar = primero;
+	while (iterar != NULL && !encontrado)
+	{
+		encontrado = iterar->obtenerDato()->verUbicacion().distanciaMetros(posicion)<500;
+		if (encontrado)
+		{
+			return iterar;
+		}
+		else
+		{
+			iterar = iterar->siguiente;
+		}
+	}
+	return iterar;
+}
+
 /*devuelve el vertice considerando que 2 estaciones son iguales si tienen la misma
  * ubicacion geografica*/
 Vertice *Grafo::getVertice(Estacion *parada)
@@ -372,15 +392,15 @@ void Grafo ::imprimirRecorrido(int *dist, int *predecesor, Vertice *origen, Vert
 		if (dist[i] != infinito)
 		{
 			//std::cout<<dist[i]<<std::endl;
-			Vertice *destino = this->obtenerVertice(i);
+			Vertice *destinoIterado = this->obtenerVertice(i);
 			ui marcaPredecesor = predecesor[i];
 			Vertice *predecesor = this->obtenerVertice(marcaPredecesor);
-			if (origen == predecesor&&origen->obtenerMarca()==destino->obtenerMarca())
+			if (origen == predecesor&&destinoIterado->obtenerMarca()==destino->obtenerMarca())
 			{
 				std::cout << origen->obtenerDato()->verNombre() << "---" << destino->obtenerDato()->verNombre() << " |" << dist[i] << "m" << std::endl;
 			}
 			else
-			{	if(origen->obtenerMarca()==destino->obtenerMarca()){
+			{	if(destinoIterado->obtenerMarca()==destino->obtenerMarca()){
 				std::cout << origen->obtenerDato()->verNombre() << "---" << predecesor->obtenerDato()->verNombre() << "---" << destino->obtenerDato()->verNombre() << " |" << dist[i] << "m" << std::endl;
 
 			}

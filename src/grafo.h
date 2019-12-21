@@ -35,6 +35,7 @@ public:
 	int verCantidadVertices();
 	Vertice *getVertice(Estacion *parada);
 	Vertice* obtenerVertice(ui marca);
+	Vertice *obtenerVertice(Coordenadas posicion);
 	void insertarVertice(Estacion *parada, ui index);
 	void cargarVertices(Lista<std::string> *estaciones, std::string tipoTransporte);
 	void cargarAristas();

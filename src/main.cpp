@@ -9,8 +9,9 @@
 int main(){
 	//Menu recorridos;
 	//recorridos.iniciarMenu();
-
-	Ciudad caba;
+Menu recorrido;
+recorrido.iniciarMenu();
+//	Ciudad caba;
 	//caba.verRedSubte();
 	//caba.verRedTren();
 	//caba.verRedTransporte();

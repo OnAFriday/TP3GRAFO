@@ -131,12 +131,16 @@ void Grafo::cargarAristas()
 				iterando != posibleAdyacente)
 			{
 				this->insertarArista(iterando, posibleAdyacente, distancia);
+				this->insertarArista(posibleAdyacente, iterando, distancia);
+
 			}
 			else
 			{
 				if (distancia < 500 && iterando != posibleAdyacente)
 				{
 					this->insertarArista(iterando, posibleAdyacente, distancia);
+					this->insertarArista(posibleAdyacente, iterando, distancia);
+
 				}
 			}
 
@@ -175,6 +179,8 @@ void Grafo::insertarVertice(Estacion *parada, ui index)
 				ui distancia = ubicacionAdyacentePosible.distanciaMetros(ubicacionAgregada);
 
 				this->insertarArista(posibleAdyacente, nuevo, distancia);
+				this->insertarArista(nuevo, posibleAdyacente, distancia);
+
 			}
 			else
 			{
@@ -183,6 +189,8 @@ void Grafo::insertarVertice(Estacion *parada, ui index)
 				if (distancia < 500 && nuevo != posibleAdyacente)
 				{
 					this->insertarArista(posibleAdyacente, nuevo, distancia);
+					this->insertarArista(nuevo, posibleAdyacente, distancia);
+
 				}
 			}
 			posibleAdyacente = posibleAdyacente->siguiente;
@@ -309,22 +317,6 @@ void Grafo ::cargarMatriz()
 		}
 	}
 
-	Vertice *nodo = this->primero;
-	while (nodo != NULL)
-	{
-		ui indice = nodo->obtenerMarca();
-		std::list<Arista *> *aristasVertice = nodo->obtenerAristas();
-		std::list<Arista *>::iterator i;
-		Arista *tempArista;
-
-		for (i = aristasVertice->begin(); i != aristasVertice->end(); i++)
-		{
-			tempArista = *i;
-			ui indice2 = tempArista->obtenerVerticeDestino()->obtenerMarca();
-			this->matriz[indice][indice2] = tempArista->obtenerDistancia();
-		}
-		nodo = nodo->obtenerVerticeSig();
-	}
 }
 
 int Grafo ::minDistance(int dist[], bool sptSet[])
@@ -340,6 +332,25 @@ int Grafo ::minDistance(int dist[], bool sptSet[])
 
 void Grafo ::dijkstra(Vertice *origen, Vertice* destino)
 {
+	Vertice *nodo = this->primero;
+	while (nodo != NULL)
+	{
+		ui indice = nodo->obtenerMarca();
+		std::list<Arista *> *aristasVertice = nodo->obtenerAristas();
+		std::list<Arista *>::iterator i;
+		Arista *tempArista;
+
+		for (i = aristasVertice->begin(); i != aristasVertice->end(); i++)
+		{
+			tempArista = *i;
+			ui indice2 = tempArista->obtenerVerticeDestino()->obtenerMarca();
+			this->matriz[indice][indice2] = tempArista->obtenerDistancia();
+			this->matriz[indice2][indice]=tempArista->obtenerDistancia();
+		}
+		nodo = nodo->obtenerVerticeSig();
+	}
+
+
 
 	int predecesor[this->tamanio];
 	//arreglo donde va a estar la distancia desde origan a cada uno de los demás vertices del grafo
@@ -348,7 +359,7 @@ void Grafo ::dijkstra(Vertice *origen, Vertice* destino)
 	//arreglo donde se indice si cada vertice ya fue recorrido
 	bool sptSet[this->tamanio];
 
-	this->cargarMatriz();
+	//this->cargarMatriz();
 
 	//inicializo los arreglos
 	for (ui i = 0; i < this->tamanio; i++)

@@ -189,8 +189,10 @@ void Grafo ::ListaAdyacencia()
 
 	Vertice *verticeAux;
 	//Arista *aristaAux;
+
 	std::list<Arista *> *aristasVertice;
 	verticeAux = this->primero;
+
 	while (verticeAux != NULL)
 	{
 		std::cout << verticeAux->parada->verNombre() << "|" << verticeAux->obtenerMarca() << "|"
@@ -209,6 +211,25 @@ void Grafo ::ListaAdyacencia()
 		std::cout << std::endl;
 		verticeAux = verticeAux->obtenerVerticeSig();
 	}
+	/*
+	Lista<Arista*>*aristas;
+	Vertice *verticeAux;
+
+	verticeAux = this->primero;
+
+	while (verticeAux != NULL){
+		aristas=verticeAux->obtenerAristas();
+		aristas->iniciarCursor();
+		while(aristas->avanzarCursor()){
+			std::cout<<aristas->obtenerCursor()->Adyacente->parada->verNombre() <<"-->";
+
+
+		}
+        std::cout << std::endl;
+
+		verticeAux = verticeAux->obtenerVerticeSig();
+	}*/
+	/*comenatrio para commit*/
 }
 
 /*metodo no revisado ni prbado con Estacion*/
@@ -284,7 +305,6 @@ void Grafo ::cargarMatriz()
 		}
 		nodo = nodo->obtenerVerticeSig();
 	}
-
 }
 
 int Grafo ::minDistance(int dist[], bool sptSet[])
@@ -340,9 +360,12 @@ void Grafo ::dijkstra(Vertice *origen) //, Vertice* destino)
 	}
 
 	imprimirRecorrido(dist, predecesor, origen);
+
+	this->borrarMatriz();
 }
 
-void Grafo :: imprimirRecorrido(int * dist, int * predecesor, Vertice *origen){
+void Grafo ::imprimirRecorrido(int *dist, int *predecesor, Vertice *origen)
+{
 	/*imprimo d con origen y destino*/
 	for (ui i = 0; i < this->tamanio; i++)
 	{

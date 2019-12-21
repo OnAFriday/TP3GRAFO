@@ -34,7 +34,8 @@ class Ciudad {
 		void cargarAdyacentes();
 	public:
 		/*post: crea ciudad con datos de transportes de archivos csv
-		 */
+		 *//*comenatrio para commit*/
+
 		Ciudad();
 		void verRedSubte();
 		void verRedTren();

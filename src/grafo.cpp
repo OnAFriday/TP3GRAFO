@@ -445,6 +445,7 @@ void Grafo ::imprimirRecorrido(int *dist, int *predecesor, Vertice *origen)
 
 Grafo ::~Grafo()
 {
+	/*comenatrio para commit*/
 
 	/*borro vertices*/
 	while (primero != NULL)

@@ -20,70 +20,34 @@ void Menu::iniciarMenu(){
 	string auxLatitudOrigen,auxLatitudDestino,auxLongitudOrigen,auxLongitudDestino;
 	char opcionMenu ;
 	bool salir = false;
-
+	cout<<""<<endl;
 	cout<<"   -- CIUDAD DIGITAL EN MOVIMIENTO V1.0 --"<<endl;
 	cout<<""<<endl;
 
 	while(!salir){
-
-		cout<<""<<endl;
-		cout<<"  ELIJA TIPO DE RECORIDO  "<<endl;
-		cout<<""<<endl;
-		cout<<"1 - Recorrido sin conbinaciones"<<endl;
-		cout<<"2 - Recorrido con conbinaciones"<<endl;
-		cout<<"0 - salir"<<endl;
-		cout<<""<<endl;
-		cout <<"Ingrese su opcion: ";
-		cin>>opcionMenu;
 		cout <<""<<endl;
-		//opcionMenu = this->opcionValida(0,2);
+		cout<<"PUNTO DE ORIGEN"<<endl;
+		cout<<"   Ingrese latitud de origen: ";
+		cin>>auxLatitudOrigen;
+		cout<<"   Ingrese longitud de origen: ";
+		cin>>auxLongitudOrigen;
+		cout<<"PUNTO DE DESTINO"<<endl;
+		cout<<"   Ingrese latitud de destino: ";
+		cin>>auxLatitudDestino;
+		cout<<"   Ingrese longitud de destino: ";
+		cin>>auxLongitudDestino;
 
-		if(opcionMenu=='1' || opcionMenu=='2'){
-
-			cout<<"ORIGEN"<<endl;
-
-			cout<<"   Ingrese latitud de origen: ";
-			cin>>auxLatitudOrigen;
-			cout<<"   Ingrese longitud de origen: ";
-			cin>>auxLongitudOrigen;
-			cout<<"DESTINO"<<endl;
-
-			cout<<"   Ingrese latitud de destino: ";
-			cin>>auxLatitudDestino;
-			cout<<"   Ingrese longitud de destino: ";
-			cin>>auxLongitudDestino;
-		}
 		Coordenadas origen(auxLongitudOrigen, auxLatitudOrigen);
-		//Coordenadas origen1("-58.3972499423143", "-34.5878038772456");
-		//std::cout<<"distancia de 2 puntos iguales"<<origen.distanciaMetros(origen1)<<std::endl;
 		Coordenadas destino(auxLongitudDestino, auxLatitudDestino);
 
-		//Coordenadas origen(auxLongitudOrigen,auxLatitudOrigen);
-		//Coordenadas destino(auxLongitudDestino,auxLatitudDestino);
+		cout <<"PARA BUSCAR OTRO RECORRIDO INGRESE 'S', DE LO CONTRARIO INGRESE 'N' "<<endl;
+		cin>>opcionMenu;
 
-		switch (opcionMenu){
-			case '0':
-				cout<<"\n PROGRAMA FINALIZADO "<<endl;
-				salir = true;
-			break;
-			case '1':
-				cout<<""<<endl;
-				cout<<" RECORRIDO SIN CONBINACIONES "<<endl;
-				cout<<""<<endl;
-				this->miCiudad->verRecorridoDirecto(origen,destino);
-				cout<<""<<endl;
-			break;
-			case '2':
-				cout<<""<<endl;
-				cout<<" RECORRIDO CON CONBINACIONES "<<endl;
-				cout<<""<<endl;
-				this->miCiudad->verRecorridoConCombinacion(origen,destino);
-				cout<<""<<endl;
-			break;
-
-			default:
-				cout<<" OPCION NO VALIDA, INGRESE DE NUEVO SU OPCION "<<endl;
+		if(opcionMenu == 'N' || opcionMenu == 'n'){
+			salir = true;
 		}
+
+
 	}
 }
 

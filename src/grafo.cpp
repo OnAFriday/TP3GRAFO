@@ -38,7 +38,7 @@ Vertice *Grafo ::obtenerVertice(ui marca)
 	}
 	return iterar;
 }
-
+/*metodo para obt vertice con coordenadas*/
 Vertice *Grafo ::obtenerVertice(Coordenadas posicion)
 {
 	Vertice *iterar = NULL;

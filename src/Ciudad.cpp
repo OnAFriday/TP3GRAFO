@@ -37,11 +37,8 @@ Ciudad::Ciudad(){
 	//this->estacionesFerrocarril->cargarVertices(&registrosEstacionesTren, "ferrocarril");
 	//this->estacionesFerrocarril->cargarAristas();
 
-	std::cout<<"entro a cargar vertices de subtes"<<std::endl;
 	this->transportes->cargarVertices(&registrosBocasSubte, "subte");
-	std::cout<<"entro a cargar vertices de trenes"<<std::endl;
 	this->transportes->cargarVertices(&registrosEstacionesTren,"ferrocarril");
-	std::cout<<"entro a cargar vertices de colectivos"<<std::endl;
 	this->transportes->cargarVertices(&registrosEstacionesColectivo,"colectivo");
 	this->transportes->cargarMatriz();
 	//std::cout<<"Cargo la lista de vertices "<<std::endl;
